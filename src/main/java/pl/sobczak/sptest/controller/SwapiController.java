@@ -46,16 +46,4 @@ public class SwapiController {
         return null;
     }
 
-    public static class ReportDTO {
-
-        String name;
-        
-        public ReportDTO() {
-            
-            name = "killer";
-            
-        }
-    }
-
-    
 }

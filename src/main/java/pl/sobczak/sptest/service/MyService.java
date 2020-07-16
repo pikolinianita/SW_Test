@@ -6,7 +6,8 @@
 package pl.sobczak.sptest.service;
 
 import org.springframework.stereotype.Component;
-import pl.sobczak.sptest.controller.SwapiController;
+import pl.sobczak.sptest.controller.ReportDTO;
+import pl.sobczak.sptest.exceptions.RestExceptions;
 
 /**
  *
@@ -16,11 +17,11 @@ import pl.sobczak.sptest.controller.SwapiController;
 public class MyService {
 
     public void akeita() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new RestExceptions.AkeitaException("No Cofee Today!");
     }
 
-    public SwapiController.ReportDTO getOne(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ReportDTO getOne(Long id) {
+        return new ReportDTO("Fake Report with id " + String.valueOf(id)); 
     }
     
 }
