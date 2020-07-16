@@ -5,12 +5,14 @@
  */
 package pl.sobczak.sptest.service;
 
+import org.springframework.stereotype.Component;
 import pl.sobczak.sptest.controller.SwapiController;
 
 /**
  *
  * @author piko
  */
+@Component
 public class MyService {
 
     public void akeita() {
