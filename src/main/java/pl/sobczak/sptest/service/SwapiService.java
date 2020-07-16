@@ -14,9 +14,9 @@ import pl.sobczak.sptest.exceptions.RestExceptions;
  * @author piko
  */
 @Component
-public class MyService {
+public class SwapiService {
 
-    public void akeita() {
+    public Object akeita() {
         throw new RestExceptions.AkeitaException("No Cofee Today!");
     }
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.sobczak.sptest.service.MyService;
+import pl.sobczak.sptest.service.SwapiService;
 
 /**
  *
@@ -25,13 +25,12 @@ import pl.sobczak.sptest.service.MyService;
 public class SwapiController {
 
     @Autowired
-    MyService service;
+    SwapiService service;
 
     @GetMapping("/akeita")
     public Object getAkeita() {
         log.info("Akeita invoked");
-        service.akeita();
-        return null;
+        return service.akeita();
     }
 
     @GetMapping("/{id}")
