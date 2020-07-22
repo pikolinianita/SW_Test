@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.sobczak.sptest.exceptions.RestExceptions;
-import pl.sobczak.sptest.service.SwRequest;
+import pl.sobczak.sptest.domain.SwRequest;
 import pl.sobczak.sptest.service.SwapiReadDeleteService;
 
 /**

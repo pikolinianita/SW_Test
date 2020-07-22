@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.sobczak.sptest.service;
+package pl.sobczak.sptest.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +23,7 @@ import lombok.experimental.Accessors;
 @Setter()
 @NoArgsConstructor
 @ToString
+@Embeddable
 public class SwRequest {
 
     @JsonProperty("query_criteria_character_phrase")

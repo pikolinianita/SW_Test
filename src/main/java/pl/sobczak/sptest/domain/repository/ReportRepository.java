@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.sobczak.sptest.service.Interfaces;
+package pl.sobczak.sptest.domain.repository;
 
-import pl.sobczak.sptest.domain.SwRequest;
+import org.springframework.data.jpa.repository.JpaRepository;
+import pl.sobczak.sptest.domain.Report;
 
 /**
  *
  * @author piko
  */
-public interface SwapiWrite {
-
-    boolean createOrUpdate(SwRequest request);
+interface ReportRepository extends JpaRepository<Report, Long>{
+    
 }

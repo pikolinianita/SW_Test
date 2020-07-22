@@ -5,6 +5,7 @@
  */
 package pl.sobczak.sptest.service;
 
+import pl.sobczak.sptest.domain.SwRequest;
 import pl.sobczak.sptest.service.Interfaces.SwapiWrite;
 
 /**
