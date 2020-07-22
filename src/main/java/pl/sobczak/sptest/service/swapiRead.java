@@ -5,21 +5,17 @@
  */
 package pl.sobczak.sptest.service;
 
-import org.springframework.stereotype.Component;
+import java.util.List;
 import pl.sobczak.sptest.controller.ReportDTO;
-import pl.sobczak.sptest.exceptions.RestExceptions;
 
 /**
  *
  * @author piko
  */
-@Component
-public class SwapiService {
-
+public interface swapiRead {
     
-
-    public ReportDTO getOne(Long id) {
-        return new ReportDTO("Fake Report with id " + String.valueOf(id)); 
-    }
+    ReportDTO getOne (Long id);
+    
+    List<ReportDTO> getAll();
     
 }

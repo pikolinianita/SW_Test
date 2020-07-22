@@ -5,15 +5,21 @@
  */
 package pl.sobczak.sptest.controller;
 
+import java.util.List;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.sobczak.sptest.exceptions.RestExceptions;
+import pl.sobczak.sptest.service.SwRequest;
 import pl.sobczak.sptest.service.SwapiService;
+
 
 /**
  *
@@ -30,7 +36,7 @@ public class SwapiController {
     @GetMapping("/akeita")
     public Object getAkeita() {
         log.info("Akeita invoked");
-        return service.akeita();
+        throw new RestExceptions.AkeitaException("No Cofee Today!");
     }
 
     @GetMapping("/{id}")
@@ -38,11 +44,29 @@ public class SwapiController {
         log.info("Get invokedwith id: " + id);
         return service.getOne(id);
     }
+    
+     @GetMapping("/")
+     public List<ReportDTO> getAll(){
+         log.info("getAll invoked");
+         throw new UnsupportedOperationException("Not supported yet.");
+     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteOne(@PathVariable Long id) {
         log.info("Delete invoked with id: " + id);
         return null;
+    }
+
+    @DeleteMapping("/")
+    public ResponseEntity<?> deleteAll(){
+         log.info("DeleteAll invoked");
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @PutMapping("/{report_id}")
+    public ResponseEntity<?> createOrUpdate(@PathVariable Long id, @RequestBody SwRequest input){
+        log.info("put invoked");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }
