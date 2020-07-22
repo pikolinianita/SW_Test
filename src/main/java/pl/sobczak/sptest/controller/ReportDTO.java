@@ -13,7 +13,7 @@ import lombok.Getter;
  */
 @Getter
 public class ReportDTO {
-    
+
     String name;
 
     public ReportDTO() {
@@ -23,5 +23,5 @@ public class ReportDTO {
     public ReportDTO(String name) {
         this.name = name;
     }
-    
+
 }

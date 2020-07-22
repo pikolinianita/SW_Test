@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.sobczak.sptest.service;
+package pl.sobczak.sptest.service.Interfaces;
 
 import java.util.List;
 import pl.sobczak.sptest.controller.ReportDTO;
@@ -12,10 +12,10 @@ import pl.sobczak.sptest.controller.ReportDTO;
  *
  * @author piko
  */
-public interface swapiRead {
-    
-    ReportDTO getOne (Long id);
-    
+public interface SwapiRead {
+
+    ReportDTO getOne(Long id);
+
     List<ReportDTO> getAll();
-    
+
 }

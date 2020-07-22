@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.sobczak.sptest.service;
+package pl.sobczak.sptest.service.Interfaces;
 
 /**
  *
  * @author piko
  */
-public interface swapiDelete {
-    
+public interface SwapiDelete {
+
     boolean deleteOne(Long id);
-    
+
     boolean deleteAll();
-    
-       
+
 }

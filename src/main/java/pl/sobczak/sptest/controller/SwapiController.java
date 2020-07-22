@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.sobczak.sptest.exceptions.RestExceptions;
 import pl.sobczak.sptest.service.SwRequest;
-import pl.sobczak.sptest.service.SwapiService;
-
+import pl.sobczak.sptest.service.SwapiReadDeleteService;
 
 /**
  *
@@ -31,7 +30,7 @@ import pl.sobczak.sptest.service.SwapiService;
 public class SwapiController {
 
     @Autowired
-    SwapiService service;
+    SwapiReadDeleteService service;
 
     @GetMapping("/akeita")
     public Object getAkeita() {
@@ -44,12 +43,12 @@ public class SwapiController {
         log.info("Get invokedwith id: " + id);
         return service.getOne(id);
     }
-    
-     @GetMapping("/")
-     public List<ReportDTO> getAll(){
-         log.info("getAll invoked");
-         throw new UnsupportedOperationException("Not supported yet.");
-     }
+
+    @GetMapping("/")
+    public List<ReportDTO> getAll() {
+        log.info("getAll invoked");
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteOne(@PathVariable Long id) {
@@ -58,13 +57,13 @@ public class SwapiController {
     }
 
     @DeleteMapping("/")
-    public ResponseEntity<?> deleteAll(){
-         log.info("DeleteAll invoked");
+    public ResponseEntity<?> deleteAll() {
+        log.info("DeleteAll invoked");
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     @PutMapping("/{report_id}")
-    public ResponseEntity<?> createOrUpdate(@PathVariable Long id, @RequestBody SwRequest input){
+    public ResponseEntity<?> createOrUpdate(@PathVariable Long id, @RequestBody SwRequest input) {
         log.info("put invoked");
         throw new UnsupportedOperationException("Not supported yet.");
     }
