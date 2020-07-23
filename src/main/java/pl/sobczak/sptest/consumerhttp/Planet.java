@@ -5,10 +5,24 @@
  */
 package pl.sobczak.sptest.consumerhttp;
 
+import lombok.Getter;
+import lombok.ToString;
+
 /**
  *
  * @author piko
  */
+@Getter
+@ToString
 public class Planet {
-    
+        
+    private final String name;
+
+    private final String swapiId;
+
+    public Planet(String name, String swapiId) {
+        this.name = name;
+        this.swapiId = swapiId;
+    }
+
 }

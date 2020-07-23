@@ -6,6 +6,7 @@
 package pl.sobczak.sptest.consumerhttp;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,12 +31,25 @@ public class HttpConsumer implements HttpConsumerI {
 
     @Override
     public List<Planet> findPlanet(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        var resultList = new LinkedList<Planet>();
+        var nextUrl = PLANET.queryWithNameUri(name);       
+        
+        while (nextUrl != null) {
+            log.info("------url: " + nextUrl + " :---:");
+            var page = restTemplate.getForObject(nextUrl, PlanetPage.class);
+            nextUrl = page.getNext();           
+            resultList.addAll(page.getResultList());            
+            log.info("------nextUrl: " + nextUrl + " :size: " + resultList.size());
+        }
+        
+        return resultList;
     }
 
     @Override
     public List<People> findPeople(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
