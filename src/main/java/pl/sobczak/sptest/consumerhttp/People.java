@@ -5,10 +5,33 @@
  */
 package pl.sobczak.sptest.consumerhttp;
 
+import java.util.Set;
+import lombok.Getter;
+import lombok.ToString;
+
 /**
  *
  * @author piko
  */
+@Getter
+@ToString
 public class People {
+    
+    private final String name;
+
+    private final String swapiId;
+
+    private final Set<String> filmIds;
+    
+    private final String homePlanetId;
+
+
+    public People(String name, String swapiId, Set<String> filmIds, String planetId) {
+        this.name = name;
+        this.swapiId = swapiId;
+        this.filmIds = filmIds;
+        this.homePlanetId = planetId;
+    }
+    
     
 }

@@ -31,25 +31,36 @@ public class HttpConsumer implements HttpConsumerI {
 
     @Override
     public List<Planet> findPlanet(String name) {
-       
+
         var resultList = new LinkedList<Planet>();
-        var nextUrl = PLANET.queryWithNameUri(name);       
-        
+        var nextUrl = PLANET.queryWithNameUri(name);
+
         while (nextUrl != null) {
             log.info("------url: " + nextUrl + " :---:");
             var page = restTemplate.getForObject(nextUrl, PlanetPage.class);
-            nextUrl = page.getNext();           
-            resultList.addAll(page.getResultList());            
+            nextUrl = page.getNext();
+            resultList.addAll(page.getResultList());
             log.info("------nextUrl: " + nextUrl + " :size: " + resultList.size());
         }
-        
+
         return resultList;
     }
 
     @Override
     public List<People> findPeople(String name) {
-       
-        throw new UnsupportedOperationException("Not supported yet.");
+        var resultList = new LinkedList<People>();
+        var nextUrl = PEOPLE.queryWithNameUri(name);
+
+        while (nextUrl != null) {
+            log.info("------url: " + nextUrl + " :---:");
+            var page = restTemplate.getForObject(nextUrl, PeoplePage.class);
+            nextUrl = page.getNext();
+            resultList.addAll(page.getResultList());
+            log.info("------nextUrl: " + nextUrl + " :size: " + resultList.size());
+        }
+        
+        
+        return resultList;
     }
 
     @Override

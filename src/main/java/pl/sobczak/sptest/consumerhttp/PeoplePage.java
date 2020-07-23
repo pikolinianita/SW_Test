@@ -6,24 +6,24 @@
 package pl.sobczak.sptest.consumerhttp;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
-import lombok.Setter;
 
 /**
  *
  * @author piko
  */
+public class PeoplePage {
 
-public class PlanetPage {
-    
-     private String next;
+    private String next;
 
     private String count;
 
-    List<Planet> resultList = new LinkedList<>();
+    List<People> resultList = new LinkedList<>();
 
     // As I write this some "HATEOAS-like" links inside swapi starts with http, but db changed 
     // to https, so I have to add 's'
@@ -35,29 +35,37 @@ public class PlanetPage {
     }
 
     @JsonProperty("results")
-    public void preparePlanetList(List<Map<String, Object>> result) {
+    public void preparePeopleList(List<Map<String, Object>> result) {
 
         resultList.addAll(
                 result.stream()
                         .map(record
-                                -> new Planet((String) record.get("name"),
-                                getId((String) record.get("url")))
+                                -> new People((String) record.get("name"),
+                                getId((String) record.get("url")),
+                                makeSet(record.get("films")),
+                                getId((String) record.get("homeworld")))
                         )
                         .collect(Collectors.toCollection(LinkedList::new)));
     }
-    
+
     private String getId(String url) {
         var tmp = url.substring(0, url.length() - 1);
         return tmp.substring(tmp.lastIndexOf('/') + 1);
     }
-    
- List<Planet> getResultList() {
+
+    private Set<String> makeSet(Object value) {
+        List<String> filmsList = (List) value;
+        return filmsList.stream()
+                .map(this::getId)
+                .collect(Collectors.toCollection(HashSet::new));
+    }
+
+    List<People> getResultList() {
         return resultList;
     }
  
     String getNext() {
         return next;
     }
-
     
 }
