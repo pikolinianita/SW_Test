@@ -16,7 +16,9 @@ import javax.persistence.ManyToMany;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
+import lombok.extern.apachecommons.CommonsLog;
 import pl.sobczak.sptest.consumerhttp.Film;
 import pl.sobczak.sptest.consumerhttp.HttpConsumer;
 import pl.sobczak.sptest.consumerhttp.People;
@@ -28,9 +30,11 @@ import pl.sobczak.sptest.exceptions.RestExceptions;
  *
  * @author piko
  */
+@CommonsLog
 @Accessors(chain = true)
 @Getter(AccessLevel.PACKAGE)
 @Setter(AccessLevel.PACKAGE)
+@ToString
 @Entity
 public class Report {
 
@@ -85,9 +89,10 @@ public class Report {
         return people.stream()
                 .flatMap(p -> p.getFilmIds().stream())
                 .collect(toSet());
-    }
+        }
 
     private Set<Hero> composeHeroes(List<People> people, Set<Film> films) {
+       
         var movieMap = films.stream()
                 .map(Movie::new)
                 .collect(toMap(movie -> String.valueOf(movie.getSwapiId()),
@@ -100,7 +105,6 @@ public class Report {
                     return hero;
                 })
                 .collect(toSet());
-
     }
 
     public Report save(ReportRepository repo) {

@@ -12,7 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 import pl.sobczak.sptest.consumerhttp.People;
 
@@ -24,6 +26,8 @@ import pl.sobczak.sptest.consumerhttp.People;
 @Accessors(chain = true)
 @Getter(AccessLevel.PACKAGE)
 @Setter(AccessLevel.PACKAGE)
+@NoArgsConstructor
+@ToString
 @Entity
 class Hero {
     

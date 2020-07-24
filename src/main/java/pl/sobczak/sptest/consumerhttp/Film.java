@@ -28,5 +28,11 @@ public class Film {
         var tmp = url.substring(0, url.length() - 1);
         swapiId = tmp.substring(tmp.lastIndexOf('/') + 1);
     }
+
+    //For Testing
+    public Film(String name, String swapiId) {
+        this.name = name;
+        this.swapiId = swapiId;
+    }
    
 }
