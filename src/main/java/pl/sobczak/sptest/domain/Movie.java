@@ -11,6 +11,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import pl.sobczak.sptest.consumerhttp.Film;
 
 /**
  *
@@ -20,11 +21,15 @@ import lombok.experimental.Accessors;
 @Getter(AccessLevel.PACKAGE)
 @Setter(AccessLevel.PACKAGE)
 @Entity
-public class Movie {
+class Movie {
     
     @Id
     Long swapiId;
     
     String name;
     
+    Movie (Film film){
+        swapiId = Long.parseLong(film.getSwapiId());
+        name = film.getName();
+    }
 }

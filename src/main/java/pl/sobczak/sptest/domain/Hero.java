@@ -5,6 +5,7 @@
  */
 package pl.sobczak.sptest.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import pl.sobczak.sptest.consumerhttp.People;
 
 
 /**
@@ -23,14 +25,25 @@ import lombok.experimental.Accessors;
 @Getter(AccessLevel.PACKAGE)
 @Setter(AccessLevel.PACKAGE)
 @Entity
-public class Hero {
+class Hero {
     
     @Id
     Long swapiId;
           
     @ManyToMany
-    Set<Movie> films;
+    Set<Movie> movies;
     
     String name;
+
+    Hero(People ppl) {
+        swapiId = Long.parseLong(ppl.getSwapiId());
+        name = ppl.getName();
+        movies = new HashSet<>();
+    }
+
+    Hero addMovie(Movie movie) {
+        movies.add(movie);
+        return this;
+    }
     
     }

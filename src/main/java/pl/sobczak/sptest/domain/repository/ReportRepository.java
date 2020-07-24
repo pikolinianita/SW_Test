@@ -12,6 +12,6 @@ import pl.sobczak.sptest.domain.Report;
  *
  * @author piko
  */
-interface ReportRepository extends JpaRepository<Report, Long>{
+public interface ReportRepository extends JpaRepository<Report, Long>{
     
 }

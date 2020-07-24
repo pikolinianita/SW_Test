@@ -24,11 +24,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  */
 @CommonsLog
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {HttpConsumerConfiguration.class, HttpConsumer.class})
+@ContextConfiguration(classes = {HttpConsumerConfiguration.class, DefaultHttpConsumer.class})
 public class HttpConsumerTest {
 
     @Autowired
-    HttpConsumer consumer;
+    DefaultHttpConsumer consumer;
 
     @BeforeEach
     public void setUp(TestInfo testInfo) {

@@ -16,7 +16,7 @@ import pl.sobczak.sptest.controller.ReportDTO;
  * @author piko
  */
 @Component
-public class SwapiReadDeleteService implements SwapiDelete, SwapiRead {
+public class DefaultReadDeleteService implements SwapiDelete, SwapiRead {
 
     @Override
     public ReportDTO getOne(Long id) {

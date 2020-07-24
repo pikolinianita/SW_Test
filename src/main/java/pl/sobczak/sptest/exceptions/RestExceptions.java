@@ -33,17 +33,17 @@ public class RestExceptions extends Exception {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public static class HttpNameNotCorrect extends RuntimeException {
+    public static class HttpResourceNotFound extends RuntimeException {
 
-        public HttpNameNotCorrect(String text) {
+        public HttpResourceNotFound(String text) {
             super(text);
         }
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public static class HttpPlanetNotExist extends RuntimeException {
+    public static class HttpQueryNoHits extends RuntimeException {
 
-        public HttpPlanetNotExist(String text) {
+        public HttpQueryNoHits(String text) {
             super(text);
         }
     }

@@ -13,5 +13,5 @@ import pl.sobczak.sptest.domain.SwRequest;
  */
 public interface SwapiWrite {
 
-    boolean createOrUpdate(SwRequest request);
+    boolean createOrUpdate(Long id, SwRequest request);
 }
