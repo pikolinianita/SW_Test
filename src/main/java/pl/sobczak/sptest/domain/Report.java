@@ -9,16 +9,22 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import static java.util.stream.Collectors.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+//import javax.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.extern.apachecommons.CommonsLog;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
+
 import pl.sobczak.sptest.consumerhttp.Film;
 import pl.sobczak.sptest.consumerhttp.HttpConsumer;
 import pl.sobczak.sptest.consumerhttp.People;
@@ -35,6 +41,7 @@ import pl.sobczak.sptest.exceptions.RestExceptions;
 @Getter(AccessLevel.PACKAGE)
 @Setter(AccessLevel.PACKAGE)
 @ToString
+@NoArgsConstructor
 @Entity
 public class Report {
 
@@ -44,7 +51,7 @@ public class Report {
     @Embedded
     SwRequest request;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     Set<Hero> heroes;
 
     public Report(Long id) {
@@ -89,15 +96,15 @@ public class Report {
         return people.stream()
                 .flatMap(p -> p.getFilmIds().stream())
                 .collect(toSet());
-        }
+    }
 
     private Set<Hero> composeHeroes(List<People> people, Set<Film> films) {
-       
+
         var movieMap = films.stream()
                 .map(Movie::new)
                 .collect(toMap(movie -> String.valueOf(movie.getSwapiId()),
                         Function.identity()));
-        
+
         return people.stream()
                 .map(ppl -> {
                     var hero = new Hero(ppl);
@@ -108,7 +115,6 @@ public class Report {
     }
 
     public Report save(ReportRepository repo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        //return this;
+      return repo.save(this);        
     }
 }

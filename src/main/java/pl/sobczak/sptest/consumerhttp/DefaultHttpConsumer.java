@@ -29,10 +29,6 @@ public class DefaultHttpConsumer implements HttpConsumer {
         this.restTemplate = restTemplate;
     }
 
-    public DefaultHttpConsumer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public List<Planet> findPlanet(String name) {
 

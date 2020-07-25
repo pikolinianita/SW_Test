@@ -7,6 +7,7 @@ package pl.sobczak.sptest.domain;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -34,7 +35,7 @@ class Hero {
     @Id
     Long swapiId;
           
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     Set<Movie> movies;
     
     String name;
