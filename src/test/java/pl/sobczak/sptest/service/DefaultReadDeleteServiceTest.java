@@ -24,7 +24,7 @@ import pl.sobczak.sptest.domain.repository.ReportRepository;
 @CommonsLog
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
-public class DefaultReadDeleteServiceTest {
+class DefaultReadDeleteServiceTest {
 
     @Autowired
     DefaultReadDeleteService service;
@@ -39,7 +39,7 @@ public class DefaultReadDeleteServiceTest {
 
     @Test
     @DisplayName("Test read service with one record")
-    public void testServiceOne() {
+    void testServiceOne() {
 
         var report = new ReportTestFactory().lukeOnTatooine();
         rp.save(report);
@@ -52,7 +52,7 @@ public class DefaultReadDeleteServiceTest {
 
     @Test
     @DisplayName("Test read service : get one record out of two")
-    public void testServiceTwoReports() {
+    void testServiceTwoReports() {
 
         final var reportTestFactory = new ReportTestFactory();
         var report = reportTestFactory.lukeAndWanOnTatooine();
@@ -71,7 +71,7 @@ public class DefaultReadDeleteServiceTest {
     
     @Test
     @DisplayName("Test read service : get all of 2 records")
-    public void testServiceTwoReportsReortAll() {
+    void testServiceTwoReportsReortAll() {
         final var reportTestFactory = new ReportTestFactory();
         var report = reportTestFactory.lukeAndWanOnTatooine();
         var report2 = reportTestFactory.LeiaOnAlderaan();
