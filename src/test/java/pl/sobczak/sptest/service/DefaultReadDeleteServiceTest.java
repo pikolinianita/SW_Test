@@ -7,8 +7,10 @@ package pl.sobczak.sptest.service;
 
 import lombok.extern.apachecommons.CommonsLog;
 import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.TestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -29,6 +31,11 @@ public class DefaultReadDeleteServiceTest {
 
     @Autowired
     ReportRepository rp;
+    
+    @BeforeEach
+    void setUp(TestInfo testInfo) {
+        log.info("=============== " + testInfo.getDisplayName() + " =============== ");
+    }
 
     @Test
     @DisplayName("Test read service with one record")
@@ -61,4 +68,33 @@ public class DefaultReadDeleteServiceTest {
                 .allMatch(line -> line.getCharacter_name().equals("Luke S")
                 || line.getCharacter_name().equals("Obi-Wan K"));
     }
+    
+    @Test
+    @DisplayName("Test read service : get all of 2 records")
+    public void testServiceTwoReportsReortAll() {
+        final var reportTestFactory = new ReportTestFactory();
+        var report = reportTestFactory.lukeAndWanOnTatooine();
+        var report2 = reportTestFactory.LeiaOnAlderaan();
+        rp.save(report);
+        rp.save(report2);
+        
+        var result = service.getAll();
+        
+        System.out.println(result);
+        
+        assertThat(result).as("Luke, Wan, and Leia")
+                .hasSize(2);
+        
+        assertThat(result.get(0).getResult()).as("Luke & Wan")
+                .hasSize(4)
+                .allMatch(line -> line.getPlanet_name().equals("Tatooine"))
+                .allMatch(line -> line.getCharacter_name().equals("Luke S")
+                         || line.getCharacter_name().equals("Obi-Wan K"));
+        
+        assertThat(result.get(1).getResult()).as("Leia")
+                .hasSize(3)
+                .allMatch(line -> line.getPlanet_name().equals("Alderaan"))
+                .allMatch(line -> line.getCharacter_name().equals("Leia O"));
+    }
+
 }

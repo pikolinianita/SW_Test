@@ -8,10 +8,13 @@ package pl.sobczak.sptest.service;
 import pl.sobczak.sptest.service.interfac.SwapiRead;
 import pl.sobczak.sptest.service.interfac.SwapiDelete;
 import java.util.List;
+import static java.util.stream.Collectors.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.sobczak.sptest.domain.FakeReportDTO;
 import pl.sobczak.sptest.domain.ReportDTO;
+import pl.sobczak.sptest.domain.ReportLineDTO;
+import pl.sobczak.sptest.domain.ReportLineForGetAll;
 import pl.sobczak.sptest.domain.repository.ReportRepository;
 
 /**
@@ -23,33 +26,41 @@ public class DefaultReadDeleteService implements SwapiDelete, SwapiRead {
 
     @Autowired
     ReportRepository repo;
-    
-    
+
     @Override
     public FakeReportDTO getFakeOne(Long id) {
         return new FakeReportDTO("Fake Report with id " + id);
     }
+
     @Override
     public ReportDTO getOne(Long id) {
         var result = repo.getReportDTOHeader(id);
-        var lines = repo.getReportLinesWithReportID(id);
+        var lines = repo.getReportLinesFromReport(id);
         result.setResult(lines);
-        return result ;
+        return result;
     }
 
     @Override
     public boolean deleteOne(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        repo.deleteById(id);
+        return true;
     }
 
     @Override
     public boolean deleteAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        repo.deleteAll();
+        return true;
     }
 
     @Override
     public List<ReportDTO> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        var result = repo.getAllReportDTOHeaders();
+        var lines = repo.getAllReportLines();
+        var linesMap = lines.stream()
+                .collect(groupingBy(ReportLineForGetAll::getReport_Id,
+                        mapping(ReportLineDTO::new, toList())));
+        result.forEach(reportDTO -> reportDTO.setResult(linesMap.get(reportDTO.getReportId())));
+        return result;
     }
 
 }

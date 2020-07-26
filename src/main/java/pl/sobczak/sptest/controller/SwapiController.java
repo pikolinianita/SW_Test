@@ -81,9 +81,9 @@ public class SwapiController {
 
     @DeleteMapping("/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<?> deleteAll() {
+    public void deleteAll() {
         log.info("DeleteAll invoked");
-        throw new UnsupportedOperationException("Not supported yet.");
+       deleteService.deleteAll();
     }
 
     @PutMapping("/{report_id}")

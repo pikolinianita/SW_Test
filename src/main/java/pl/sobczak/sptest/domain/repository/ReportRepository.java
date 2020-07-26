@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 import pl.sobczak.sptest.domain.Report;
 import pl.sobczak.sptest.domain.ReportDTO;
 import pl.sobczak.sptest.domain.ReportLineDTO;
+import pl.sobczak.sptest.domain.ReportLineForGetAll;
 
 /**
  *
@@ -19,15 +20,22 @@ import pl.sobczak.sptest.domain.ReportLineDTO;
  */
 public interface ReportRepository extends JpaRepository<Report, Long>{
     
-    
-    @Query("Select new pl.sobczak.sptest.domain.ReportLineDTO(m.name,h.name) from Hero h join h.movies m ") 
-    public List<ReportLineDTO> getReportLines(Long id);
-    
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Query("Select new pl.sobczak.sptest.domain.ReportLineDTO(r.request.heroPlanet, r.planetId, m.name, m.swapiId, h.name, h.swapiId) from Report r join r.heroes h join h.movies m where r.reportId = :id") 
-    public List<ReportLineDTO> getReportLinesWithReportID(Long id);
+    public List<ReportLineDTO> getReportLinesFromReport(Long id);
+    
+    @Query("Select new pl.sobczak.sptest.domain.ReportLineForGetAll(r.reportId, r.request.heroPlanet, r.planetId, m.name, m.swapiId, h.name, h.swapiId) from Report r join r.heroes h join h.movies m" ) 
+    public List<ReportLineForGetAll> getAllReportLines();
     
     @Query("Select new pl.sobczak.sptest.domain.ReportDTO (r.reportId, r.request.heroName, r.request.heroPlanet ) from Report r Where r.reportId = :id")
     public ReportDTO getReportDTOHeader(Long id);
+    
+    @Query("Select new pl.sobczak.sptest.domain.ReportDTO (r.reportId, r.request.heroName, r.request.heroPlanet ) from Report r ")
+    public List<ReportDTO> getAllReportDTOHeaders();
     
     @Query("select count(h) from Hero h")
     public Long countHeroes();

@@ -20,7 +20,7 @@ import lombok.experimental.Accessors;
 @ToString
 public class ReportDTO {
     
-String report_id;
+Long report_id;
  
 String query_criteria_character_phrase;
 
@@ -29,7 +29,7 @@ String query_criteria_planet_name;
 List<ReportLineDTO> result;
 
     public ReportDTO(Long report_id, String heroName, String planet) {
-        this.report_id = "" + report_id;
+        this.report_id = report_id;
         this.query_criteria_character_phrase = heroName;
         this.query_criteria_planet_name = planet;
     }
@@ -38,5 +38,9 @@ List<ReportLineDTO> result;
 public List<ReportLineDTO> getResult(){
     return result;
 }
+
+ public Long getReportId(){
+        return report_id;
+    }
 
 }
