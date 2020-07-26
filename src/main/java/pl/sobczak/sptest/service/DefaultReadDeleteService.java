@@ -55,7 +55,7 @@ public class DefaultReadDeleteService implements SwapiDelete, SwapiRead {
         var linesMap = lines.stream()
                 .collect(groupingBy(ReportLineForGetAll::getReport_Id,
                         mapping(ReportLineDTO::new, toList())));
-        result.forEach(reportDTO -> reportDTO.setResult(linesMap.get(reportDTO.getReportId())));
+        result.forEach(reportDTO -> reportDTO.setResult(linesMap.get(reportDTO.getReport_id())));
         return result;
     }
 

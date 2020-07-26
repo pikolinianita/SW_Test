@@ -14,11 +14,18 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultMatcher;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import pl.sobczak.sptest.exceptions.RestExceptions;
+import static org.assertj.core.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 
 /**
  *
@@ -34,7 +41,7 @@ class SwapiControllerTest {
     @Test
     void testAkeita() throws Exception {
 
-        mvc.perform(get("/report/akeita")                
+        mvc.perform(get("/report/akeita")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isIAmATeapot())
@@ -43,15 +50,41 @@ class SwapiControllerTest {
 
     }
 
-//    @Test
-//    void testGetOne() throws Exception{
-//        
-//        long id = 1;
-//        
-//        mvc.perform(get("/report/fake/{id}", id))
-//                .andDo(print())
-//                .andExpect(content().string(containsString("Fake Report with id 1")))
-//                .andExpect(status().isOk());
-//    }
-//    
+    @Test
+    void testHappyPath() throws Exception {
+        long first = 1L;
+        String firstQuery = "{\"query_criteria_character_phrase\":\"a\",\"query_criteria_planet_name\": \"Alderaan\"}";
+
+        MockHttpServletRequestBuilder builder
+                = MockMvcRequestBuilders.put("/report/" + first)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(firstQuery);
+
+        mvc.perform(builder)
+                .andDo(print())
+                .andExpect(status().isNoContent());
+
+        var result = mvc.perform(get("/report/{first}", first))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andReturn();
+
+        var JSONresponse = result.getResponse().getContentAsString();
+        
+        assertThat(JSONresponse).as("json body")
+                .matches(JSON -> JSON.split("Leia Organa").length > 3)
+                .matches(JSON -> JSON.split("Alderaan").length > 8);
+        
+        mvc.perform(delete("/report/{first}", first))
+                .andDo(print())
+                .andExpect(status().isNoContent());
+        
+        mvc.perform(get("/report/"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("[]")))
+                .andReturn();
+           
+    }
+
 }

@@ -41,8 +41,8 @@ public List<ReportLineDTO> getResult(){
     return result;
 }
 
- public Long getReportId(){
-        return report_id;
-    }
+// public Long getReportId(){
+//        return report_id;
+//    }
 
 }
