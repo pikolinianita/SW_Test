@@ -6,7 +6,6 @@
 package pl.sobczak.sptest.service.interfac;
 
 import java.util.List;
-import pl.sobczak.sptest.domain.FakeReportDTO;
 import pl.sobczak.sptest.domain.ReportDTO;
 
 /**

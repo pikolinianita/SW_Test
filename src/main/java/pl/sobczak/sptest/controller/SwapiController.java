@@ -5,12 +5,9 @@
  */
 package pl.sobczak.sptest.controller;
 
-import pl.sobczak.sptest.domain.FakeReportDTO;
 import java.util.List;
 import lombok.extern.apachecommons.CommonsLog;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +22,6 @@ import pl.sobczak.sptest.domain.SwRequest;
 import pl.sobczak.sptest.service.interfac.SwapiDelete;
 import pl.sobczak.sptest.service.interfac.SwapiRead;
 import pl.sobczak.sptest.service.interfac.SwapiWrite;
-import pl.sobczak.sptest.service.DefaultReadDeleteService;
 
 /**
  *
@@ -36,14 +32,19 @@ import pl.sobczak.sptest.service.DefaultReadDeleteService;
 @RequestMapping(path = "/report")
 public class SwapiController {
 
-    @Autowired
     SwapiRead readService;
 
-    @Autowired
     SwapiWrite writeService;
 
-    @Autowired
     SwapiDelete deleteService;
+
+    public SwapiController(SwapiRead readService, SwapiWrite writeService, SwapiDelete deleteService) {
+        this.readService = readService;
+        this.writeService = writeService;
+        this.deleteService = deleteService;
+    }
+    
+    
 
     @GetMapping("/akeita")
     public Object getAkeita() {
@@ -67,10 +68,9 @@ public class SwapiController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<?> deleteOne(@PathVariable Long id) {
+    public void deleteOne(@PathVariable Long id) {
         log.info("Delete invoked with id: " + id);
         deleteService.deleteOne(id);
-        return null;
     }
 
     @DeleteMapping("/")
@@ -83,7 +83,7 @@ public class SwapiController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void createOrUpdate(@PathVariable Long id, @RequestBody SwRequest input) {
-        log.info("put invoked");
+        log.info("put invoked with id: " + id);
         writeService.createOrUpdate(id, input);
     }
 

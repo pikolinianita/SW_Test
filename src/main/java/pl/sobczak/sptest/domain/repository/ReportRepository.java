@@ -19,11 +19,6 @@ import pl.sobczak.sptest.domain.ReportLineForGetAll;
  */
 public interface ReportRepository extends JpaRepository<Report, Long>{
     
-    /**
-     *
-     * @param id
-     * @return
-     */
     @Query("Select new pl.sobczak.sptest.domain.ReportLineDTO(r.request.heroPlanet, r.planetId, m.name, m.swapiId, h.name, h.swapiId) from Report r join r.heroes h join h.movies m where r.reportId = :id") 
     public List<ReportLineDTO> getReportLinesFromReport(Long id);
     
