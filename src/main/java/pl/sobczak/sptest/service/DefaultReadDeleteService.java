@@ -5,8 +5,8 @@
  */
 package pl.sobczak.sptest.service;
 
-import pl.sobczak.sptest.service.Interfaces.SwapiRead;
-import pl.sobczak.sptest.service.Interfaces.SwapiDelete;
+import pl.sobczak.sptest.service.interfac.SwapiRead;
+import pl.sobczak.sptest.service.interfac.SwapiDelete;
 import java.util.List;
 import org.springframework.stereotype.Component;
 import pl.sobczak.sptest.controller.ReportDTO;
@@ -20,7 +20,7 @@ public class DefaultReadDeleteService implements SwapiDelete, SwapiRead {
 
     @Override
     public ReportDTO getOne(Long id) {
-        return new ReportDTO("Fake Report with id " + String.valueOf(id));
+        return new ReportDTO("Fake Report with id " + id);
     }
 
     @Override

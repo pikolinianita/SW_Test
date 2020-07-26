@@ -31,7 +31,7 @@ import pl.sobczak.sptest.exceptions.RestExceptions;
  */
 @CommonsLog
 @ExtendWith(MockitoExtension.class)
-public class ReportTest {
+class ReportTest {
 
     Report report;
 
@@ -40,19 +40,19 @@ public class ReportTest {
     @Mock
     DefaultHttpConsumer httpConsumer;
 
-    public ReportTest() {
+    ReportTest() {
         this.sw = new SwapiVirtualDB();
     }
 
     @BeforeEach
-    public void setUp(TestInfo testInfo) {
+    void setUp(TestInfo testInfo) {
         log.info("=============== " + testInfo.getDisplayName() + " =============== ");
         report = new Report(1L);
     }
 
     @Test
     @DisplayName("Happy path: Luke on Tatooine")
-    public void testHappyPath() {
+    void testHappyPath() {
         SoftAssertions softly = new SoftAssertions();
 
         var request = new SwRequest().setHeroName("Luke").setHeroPlanet("Tatooine");
@@ -84,7 +84,7 @@ public class ReportTest {
     }
 
     @Test
-    public void testNoHits() {
+    void testNoHits() {
         var request = new SwRequest();
         when(httpConsumer.findPeople(any())).thenReturn(EMPTY_LIST);
         when(httpConsumer.findPlanet(any())).thenReturn(EMPTY_LIST);
@@ -98,7 +98,7 @@ public class ReportTest {
     }
 
     @Test
-    public void testNoPlanetIsHero() {
+    void testNoPlanetIsHero() {
         var request = new SwRequest();
         var heroList = List.of(sw.luke());
         when(httpConsumer.findPeople(any())).thenReturn(heroList);
@@ -114,7 +114,7 @@ public class ReportTest {
     }
 
     @Test
-    public void testNoHeroIsPlanet() {
+    void testNoHeroIsPlanet() {
         var request = new SwRequest().setHeroPlanet("Tatooine");
         var planetList = new LinkedList<>(List.of(sw.tatooine()));
 
@@ -131,7 +131,7 @@ public class ReportTest {
     }
 
     @Test
-    public void testHeroPlanetMismatch() {
+    void testHeroPlanetMismatch() {
         var request = new SwRequest().setHeroPlanet("Tatooine");
         var planetList = new LinkedList<>(List.of(sw.tatooine()));
         var peopleList = new LinkedList<>(List.of(sw.leia()));

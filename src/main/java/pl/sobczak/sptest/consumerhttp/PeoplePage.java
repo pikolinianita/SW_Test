@@ -21,8 +21,6 @@ public class PeoplePage {
 
     private String next;
 
-    private String count;
-
     List<People> resultList = new LinkedList<>();
 
     // As I write this some "HATEOAS-like" links inside swapi starts with http, but db changed 

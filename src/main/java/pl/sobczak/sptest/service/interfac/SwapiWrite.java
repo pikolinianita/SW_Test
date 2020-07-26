@@ -3,19 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.sobczak.sptest.service.Interfaces;
+package pl.sobczak.sptest.service.interfac;
 
-import java.util.List;
-import pl.sobczak.sptest.controller.ReportDTO;
+import pl.sobczak.sptest.domain.SwRequest;
 
 /**
  *
  * @author piko
  */
-public interface SwapiRead {
+public interface SwapiWrite {
 
-    ReportDTO getOne(Long id);
-
-    List<ReportDTO> getAll();
-
+    boolean createOrUpdate(Long id, SwRequest request);
 }

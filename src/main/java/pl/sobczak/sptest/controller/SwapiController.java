@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.sobczak.sptest.exceptions.RestExceptions;
 import pl.sobczak.sptest.domain.SwRequest;
-import pl.sobczak.sptest.service.Interfaces.SwapiDelete;
-import pl.sobczak.sptest.service.Interfaces.SwapiRead;
-import pl.sobczak.sptest.service.Interfaces.SwapiWrite;
+import pl.sobczak.sptest.service.interfac.SwapiDelete;
+import pl.sobczak.sptest.service.interfac.SwapiRead;
+import pl.sobczak.sptest.service.interfac.SwapiWrite;
 import pl.sobczak.sptest.service.DefaultReadDeleteService;
 
 /**

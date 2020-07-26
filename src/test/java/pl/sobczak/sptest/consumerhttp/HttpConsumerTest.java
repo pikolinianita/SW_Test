@@ -25,19 +25,19 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @CommonsLog
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {HttpConsumerConfiguration.class, DefaultHttpConsumer.class})
-public class HttpConsumerTest {
+class HttpConsumerTest {
 
     @Autowired
     DefaultHttpConsumer consumer;
 
     @BeforeEach
-    public void setUp(TestInfo testInfo) {
+    void setUp(TestInfo testInfo) {
         log.info("=============== " + testInfo.getDisplayName() + " =============== ");
     }
 
     @Test
     @DisplayName("Find New Hope")
-    public void findFilmTest() {
+    void findFilmTest() {
 
         var film = consumer.findFilms(List.of("1"));
 
@@ -48,7 +48,7 @@ public class HttpConsumerTest {
 
     @Test
     @DisplayName("Find Original Trilogy")
-    public void findOriginalTrilogyTest() {
+    void findOriginalTrilogyTest() {
 
         var titles = List.of("A New Hope", "Return of the Jedi", "The Empire Strikes Back");
         Condition<Film> inOriginalTrilogy = new Condition<>(f -> titles.contains(f.getName()), "in Original Trilogy");
@@ -64,7 +64,7 @@ public class HttpConsumerTest {
 
     @Test
     @DisplayName("Find Tatooine")
-    public void findOnePlanet() {
+    void findOnePlanet() {
 
         var planets = consumer.findPlanet("Tatooine");
 
@@ -75,7 +75,7 @@ public class HttpConsumerTest {
 
     @Test
     @DisplayName("Find many planets")
-    public void findManyPlanets() {
+    void findManyPlanets() {
 
         var planets = consumer.findPlanet("a");
 
@@ -86,11 +86,11 @@ public class HttpConsumerTest {
 
     @Test
     @DisplayName("Find Leia")
-    public void findOnePerson(){
+    void findOnePerson(){
         
         var people = consumer.findPeople("Leia Organa");
               
-        assertThat(people).as("Leia only")
+        assertThat(people).as("Leia only").isNotEmpty()
                 .allMatch(p -> p.getName().equals("Leia Organa"))
                 .allMatch(p -> p.getSwapiId().equals("5"))
                 .allMatch(p -> p.getHomePlanetId().equals("2"))
@@ -99,7 +99,7 @@ public class HttpConsumerTest {
     
     @Test
     @DisplayName("Find Many People")
-    public void findManyPersons(){
+    void findManyPersons(){
         
         var people = consumer.findPeople("o");
         

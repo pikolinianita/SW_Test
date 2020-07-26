@@ -26,13 +26,13 @@ import pl.sobczak.sptest.exceptions.RestExceptions;
  */
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SwapiControllerTest {
+class SwapiControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void testAkeita() throws Exception {
+    void testAkeita() throws Exception {
 
         mvc.perform(get("/report/akeita")                
                 .contentType(MediaType.APPLICATION_JSON))
@@ -44,7 +44,7 @@ public class SwapiControllerTest {
     }
 
     @Test
-    public void testGetOne() throws Exception{
+    void testGetOne() throws Exception{
         
         long id = 1;
         

@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 import pl.sobczak.sptest.domain.repository.ReportRepository;
 
 /**
@@ -21,7 +20,7 @@ import pl.sobczak.sptest.domain.repository.ReportRepository;
  */
 @CommonsLog
 @SpringBootTest
-public class ReportSaveTest {
+class ReportSaveTest {
 
     @Autowired
     ReportRepository rp;
@@ -29,12 +28,12 @@ public class ReportSaveTest {
     Report report;
 
      @BeforeEach
-    public void setUp(TestInfo testInfo) {
+    void setUp(TestInfo testInfo) {
         log.info("=============== " + testInfo.getDisplayName() + " =============== ");
             }
     
     @Test
-    public void saveOne() {
+    void saveOne() {
         var moviesSet = Set.of(
                 new Movie().setName("Hope").setSwapiId(10L),
                 new Movie().setName("Strikes").setSwapiId(20L));
@@ -48,7 +47,7 @@ public class ReportSaveTest {
     }
 
     @Test
-    public void saveMany() {
+    void saveMany() {
         var moviesSet = Set.of(
                 new Movie().setName("Hope").setSwapiId(1L),
                 new Movie().setName("Strikes").setSwapiId(2L));
@@ -75,7 +74,7 @@ public class ReportSaveTest {
     }
 
     @Test
-    public void testUpdate() {
+    void testUpdate() {
 
         var hope = new Movie().setName("Hope").setSwapiId(1L);
         var strike = new Movie().setName("Strikes").setSwapiId(2L);

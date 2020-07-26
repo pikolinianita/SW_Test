@@ -12,7 +12,7 @@ import pl.sobczak.sptest.consumerhttp.HttpConsumer;
 import pl.sobczak.sptest.domain.Report;
 import pl.sobczak.sptest.domain.SwRequest;
 import pl.sobczak.sptest.domain.repository.ReportRepository;
-import pl.sobczak.sptest.service.Interfaces.SwapiWrite;
+import pl.sobczak.sptest.service.interfac.SwapiWrite;
 
 /**
  *

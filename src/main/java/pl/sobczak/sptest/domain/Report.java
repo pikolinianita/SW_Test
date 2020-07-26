@@ -14,7 +14,6 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-//import javax.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,9 +21,6 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.extern.apachecommons.CommonsLog;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
-
 import pl.sobczak.sptest.consumerhttp.Film;
 import pl.sobczak.sptest.consumerhttp.HttpConsumer;
 import pl.sobczak.sptest.consumerhttp.People;
