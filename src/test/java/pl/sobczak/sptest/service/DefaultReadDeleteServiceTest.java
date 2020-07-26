@@ -5,21 +5,14 @@
  */
 package pl.sobczak.sptest.service;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
 import lombok.extern.apachecommons.CommonsLog;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import pl.sobczak.sptest.domain.Report;
+import org.springframework.test.annotation.DirtiesContext;
 import pl.sobczak.sptest.domain.ReportTestFactory;
-import pl.sobczak.sptest.domain.SwRequest;
-import pl.sobczak.sptest.domain.SwapiVirtualDB;
 import pl.sobczak.sptest.domain.repository.ReportRepository;
 
 /**
@@ -27,6 +20,7 @@ import pl.sobczak.sptest.domain.repository.ReportRepository;
  * @author piko
  */
 @CommonsLog
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
 public class DefaultReadDeleteServiceTest {
 

@@ -65,6 +65,9 @@ public class Report {
     }
 
     //arguments are modified
+    //Validation rules:
+    //Planet name has to be exact hit (not case sensitive)
+    //Hero name must contain search phrase and must be born on query planet
     void validateAndPrune(List<Planet> planets, List<People> people) {
         String errorMsg = "";
         planets.removeIf(p -> !p.getName().equalsIgnoreCase(request.getHeroPlanet()));

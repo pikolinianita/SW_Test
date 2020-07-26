@@ -7,18 +7,22 @@ package pl.sobczak.sptest.domain;
 
 import java.util.Set;
 import lombok.extern.apachecommons.CommonsLog;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.sobczak.sptest.domain.repository.ReportRepository;
+import static org.assertj.core.api.Assertions.*;
+import org.springframework.test.annotation.DirtiesContext;
 
 /**
  *
  * @author piko
  */
 @CommonsLog
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
 class ReportSaveTest {
 
@@ -27,9 +31,15 @@ class ReportSaveTest {
 
     Report report;
 
-     @BeforeEach
+    @BeforeEach
     void setUp(TestInfo testInfo) {
         log.info("=============== " + testInfo.getDisplayName() + " =============== ");
+            }
+    
+    @AfterEach
+    void TearDown(TestInfo testInfo) {
+        log.info("=====Tear Down: " + testInfo.getDisplayName() + " =============== ");
+        
             }
     
     @Test
@@ -44,6 +54,10 @@ class ReportSaveTest {
 
         report.save(rp);
 
+        assertThat(rp.count()).as("reports").isEqualTo(1L);
+        assertThat(rp.countHeroes()).as("heroes").isEqualTo(1L);
+        assertThat(rp.countMovies()).isEqualTo(2L);
+        
     }
 
     @Test
@@ -71,6 +85,10 @@ class ReportSaveTest {
                 .setHeroes(Set.of(leia, luke));
 
         report3.save(rp);
+        
+        assertThat(rp.count()).isEqualTo(3L);
+        assertThat(rp.countHeroes()).isEqualTo(2L);
+        assertThat(rp.countMovies()).isEqualTo(2L);
     }
 
     @Test
@@ -91,6 +109,10 @@ class ReportSaveTest {
                 .setHeroes(Set.of(leia));
 
         report.save(rp);
+        
+        assertThat(rp.count()).isEqualTo(1L);
+        assertThat(rp.countHeroes()).isEqualTo(2L);
+        assertThat(rp.countMovies()).isEqualTo(2L);
     }
 
 }
