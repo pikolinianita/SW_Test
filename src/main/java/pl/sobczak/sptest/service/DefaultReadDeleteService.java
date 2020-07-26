@@ -11,7 +11,6 @@ import java.util.List;
 import static java.util.stream.Collectors.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.sobczak.sptest.domain.FakeReportDTO;
 import pl.sobczak.sptest.domain.ReportDTO;
 import pl.sobczak.sptest.domain.ReportLineDTO;
 import pl.sobczak.sptest.domain.ReportLineForGetAll;
@@ -26,11 +25,6 @@ public class DefaultReadDeleteService implements SwapiDelete, SwapiRead {
 
     @Autowired
     ReportRepository repo;
-
-    @Override
-    public FakeReportDTO getFakeOne(Long id) {
-        return new FakeReportDTO("Fake Report with id " + id);
-    }
 
     @Override
     public ReportDTO getOne(Long id) {

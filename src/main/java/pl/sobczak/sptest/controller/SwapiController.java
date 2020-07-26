@@ -50,14 +50,7 @@ public class SwapiController {
         log.info("Akeita invoked");
         throw new RestExceptions.AkeitaException("No Cofee Today!");
     }
-
-    @GetMapping("/fake/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public FakeReportDTO getFakeOne(@PathVariable Long id) {
-        log.info("Get invokedwith id: " + id);
-        return readService.getFakeOne(id);
-    }
-    
+ 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ReportDTO getOne(@PathVariable Long id) {

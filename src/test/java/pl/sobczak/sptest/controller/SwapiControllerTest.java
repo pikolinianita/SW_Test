@@ -43,15 +43,15 @@ class SwapiControllerTest {
 
     }
 
-    @Test
-    void testGetOne() throws Exception{
-        
-        long id = 1;
-        
-        mvc.perform(get("/report/fake/{id}", id))
-                .andDo(print())
-                .andExpect(content().string(containsString("Fake Report with id 1")))
-                .andExpect(status().isOk());
-    }
-    
+//    @Test
+//    void testGetOne() throws Exception{
+//        
+//        long id = 1;
+//        
+//        mvc.perform(get("/report/fake/{id}", id))
+//                .andDo(print())
+//                .andExpect(content().string(containsString("Fake Report with id 1")))
+//                .andExpect(status().isOk());
+//    }
+//    
 }

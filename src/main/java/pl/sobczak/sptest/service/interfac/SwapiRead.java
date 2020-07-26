@@ -17,8 +17,6 @@ public interface SwapiRead {
 
     ReportDTO getOne(Long id);
     
-    FakeReportDTO getFakeOne(Long id); 
-
     List<ReportDTO> getAll();
 
 }
