@@ -7,6 +7,7 @@ package pl.sobczak.sptest.consumerhttp;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
@@ -16,6 +17,7 @@ import lombok.experimental.Accessors;
 
 @Accessors(chain = true)
 @Data
+@NoArgsConstructor
 public class Film {
     
     @JsonProperty("title")
