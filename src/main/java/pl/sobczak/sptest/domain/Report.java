@@ -43,6 +43,8 @@ public class Report {
 
     @Id
     Long reportId;
+    
+    Long planetId;
 
     @Embedded
     SwRequest request;
@@ -60,6 +62,7 @@ public class Report {
         var people = httpConsumer.findPeople(request.getHeroName());
         validateAndPrune(planets, people);  //changes arguments
         var films = httpConsumer.findFilms(getSetOfFilmId(people));
+        planetId = Long.parseLong(planets.get(0).getSwapiId());
         heroes = composeHeroes(people, films);
         return this;
     }

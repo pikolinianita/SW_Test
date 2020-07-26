@@ -28,8 +28,9 @@ public class ReportLineDTO {
         this.character_name = character_name;
     }
     
-    public ReportLineDTO(String planetName, String filmName, Long filmID, String characterName, Long characterID) {
+    public ReportLineDTO(String planetName, Long planetId, String filmName, Long filmID, String characterName, Long characterID) {
         this.planet_name = planetName;
+        this.planet_id = planetId;
         this.film_name = filmName;
         this.character_name = characterName;
         this.film_id = filmID;

@@ -22,6 +22,7 @@ public class ReportTestFactory {
 
         var result = new Report()
                 .setReportId(1L)
+                .setPlanetId(99L)
                 .setRequest(new SwRequest().setHeroName("Luke").setHeroPlanet("Tatooine"))
                 .setHeroes(Set.of(luke));
         return result;
@@ -38,6 +39,7 @@ public class ReportTestFactory {
         
         var result = new Report()
                 .setReportId(1L)
+                .setPlanetId(99L)
                 .setRequest(new SwRequest().setHeroName("K").setHeroPlanet("Tatooine"))
                 .setHeroes(Set.of(luke,Obi));
         return result;
@@ -52,6 +54,7 @@ public class ReportTestFactory {
         
         var result = new Report()
                 .setReportId(2L)
+                .setPlanetId(199L)
                 .setRequest(new SwRequest().setHeroName("Leia").setHeroPlanet("Alderaan"))
                 .setHeroes(Set.of(leia));
         return result;
