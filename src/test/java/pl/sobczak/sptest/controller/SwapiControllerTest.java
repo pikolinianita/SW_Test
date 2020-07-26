@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 @SpringBootTest
 @AutoConfigureMockMvc

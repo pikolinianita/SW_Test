@@ -27,7 +27,7 @@ import pl.sobczak.sptest.exceptions.RestExceptions;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 @CommonsLog
 @ExtendWith(MockitoExtension.class)

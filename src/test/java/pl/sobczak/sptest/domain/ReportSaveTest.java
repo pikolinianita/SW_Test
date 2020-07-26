@@ -19,7 +19,7 @@ import org.springframework.test.annotation.DirtiesContext;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 @CommonsLog
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)

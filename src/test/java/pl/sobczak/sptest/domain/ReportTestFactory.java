@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 public class ReportTestFactory {
 

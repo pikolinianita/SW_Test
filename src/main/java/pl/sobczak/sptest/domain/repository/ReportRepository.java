@@ -7,7 +7,9 @@ package pl.sobczak.sptest.domain.repository;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sobczak.sptest.domain.Report;
 import pl.sobczak.sptest.domain.ReportDTO;
 import pl.sobczak.sptest.domain.ReportLineDTO;
@@ -30,6 +32,12 @@ public interface ReportRepository extends JpaRepository<Report, Long>{
     
     @Query("Select new pl.sobczak.sptest.domain.ReportDTO (r.reportId, r.request.heroName, r.request.heroPlanet ) from Report r ")
     public List<ReportDTO> getAllReportDTOHeaders();
+    
+    @Modifying
+     @Transactional
+   @Query( value = "delete from HERO_MOVIES hm where hm.HERO_SWAPI_ID in (select h.SWAPI_ID  from hero h where h.SWAPI_ID not in (select HEROES_SWAPI_ID from REPORT_HEROES  )); delete from hero h where h.SWAPI_ID not in (select HERO_SWAPI_ID  from HERO_MOVIES  ); delete from movie m where m.SWAPI_ID not in ( select MOVIES_SWAPI_ID from HERO_MOVIES )",
+           nativeQuery = true)
+   public void deleteOrphans();
     
     @Query("select count(h) from Hero h")
     public Long countHeroes();

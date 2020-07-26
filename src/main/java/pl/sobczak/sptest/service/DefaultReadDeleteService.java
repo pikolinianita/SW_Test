@@ -10,6 +10,7 @@ import pl.sobczak.sptest.service.interfac.SwapiDelete;
 import java.util.List;
 import static java.util.stream.Collectors.*;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sobczak.sptest.domain.ReportDTO;
 import pl.sobczak.sptest.domain.ReportLineDTO;
 import pl.sobczak.sptest.domain.ReportLineForGetAll;
@@ -37,14 +38,18 @@ public class DefaultReadDeleteService implements SwapiDelete, SwapiRead {
     }
 
     @Override
+    @Transactional
     public boolean deleteOne(Long id) {
         repo.deleteById(id);
+        repo.deleteOrphans();
         return true;
     }
 
     @Override
+    @Transactional
     public boolean deleteAll() {
         repo.deleteAll();
+        repo.deleteOrphans();
         return true;
     }
 

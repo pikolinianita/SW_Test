@@ -12,7 +12,7 @@ import pl.sobczak.sptest.consumerhttp.Planet;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 public class SwapiVirtualDB {
     
