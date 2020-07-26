@@ -9,14 +9,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- *
- * @author piko Class With all Exceptions used by project - to have all
+ *@author Lukasz Sobczak 
+ * Class With all Exceptions used by project - to have all
  * exceptions in one file (no sophisticated logic here)
  */
 public class RestExceptions extends Exception {
 
     private RestExceptions() {
-        //Use static classes only
+        //Use static inner classes only
     }
 
     @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)

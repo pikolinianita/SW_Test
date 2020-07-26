@@ -14,8 +14,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- *
- * @author piko
+ * gets data (from Jackson) from one page
+ * @author Lukasz Sobczak
  */
 public class PeoplePage {
 
@@ -40,7 +40,7 @@ public class PeoplePage {
                         .map(record
                                 -> new People((String) record.get("name"),
                                 getId((String) record.get("url")),
-                                makeSet(record.get("films")),
+                                makeSetOfId(record.get("films")),
                                 getId((String) record.get("homeworld")))
                         )
                         .collect(Collectors.toCollection(LinkedList::new)));
@@ -51,7 +51,7 @@ public class PeoplePage {
         return tmp.substring(tmp.lastIndexOf('/') + 1);
     }
 
-    private Set<String> makeSet(Object value) {
+    private Set<String> makeSetOfId(Object value) {
         List<String> filmsList = (List) value;
         return filmsList.stream()
                 .map(this::getId)

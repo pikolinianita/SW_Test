@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 
 @Accessors(chain = true)

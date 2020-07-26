@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 @Configuration
 @CommonsLog
@@ -20,10 +20,7 @@ public class HttpConsumerConfiguration {
 
     @Bean
     public RestTemplate getRestTemplate() {
-        log.info("Rest Template Bean Creation");
-
         var restTemplate = new RestTemplate();
-
         log.info("Rest Template Bean Created");
         return restTemplate;
     }

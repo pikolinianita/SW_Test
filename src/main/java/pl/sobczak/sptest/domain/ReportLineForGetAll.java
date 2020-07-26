@@ -9,24 +9,22 @@ import lombok.Getter;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 @Getter
 public class ReportLineForGetAll {
-      
+
     Long report_Id;
-    
+
     Long film_id;
     String film_name;
-    
-    Long character_id;    
+
+    Long character_id;
     String character_name;
-    
+
     Long planet_id;
     String planet_name;
 
-   
-    
     public ReportLineForGetAll(Long reportId, String planetName, Long planetId, String filmName, Long filmID, String characterName, Long characterID) {
         this.report_Id = reportId;
         this.planet_name = planetName;
@@ -36,5 +34,5 @@ public class ReportLineForGetAll {
         this.film_id = filmID;
         this.character_id = characterID;
     }
-    
+
 }

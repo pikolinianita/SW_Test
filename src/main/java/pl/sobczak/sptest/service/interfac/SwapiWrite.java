@@ -9,7 +9,7 @@ import pl.sobczak.sptest.domain.SwRequest;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 public interface SwapiWrite {
 

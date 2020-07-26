@@ -17,9 +17,9 @@ import static pl.sobczak.sptest.consumerhttp.SwapiUrls.*;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
-@CommonsLog
+
 @Component
 public class DefaultHttpConsumer implements HttpConsumer {
 
@@ -31,18 +31,14 @@ public class DefaultHttpConsumer implements HttpConsumer {
 
     @Override
     public List<Planet> findPlanet(String name) {
-
         var resultList = new LinkedList<Planet>();
         var nextUrl = PLANET.queryWithNameUri(name);
 
-        while (nextUrl != null) {
-            log.info("------url: " + nextUrl + " :---:");
+        while (nextUrl != null) {            
             var page = restTemplate.getForObject(nextUrl, PlanetPage.class);
             nextUrl = page.getNext();
-            resultList.addAll(page.getResultList());
-            log.info("------nextUrl: " + nextUrl + " :size: " + resultList.size());
+            resultList.addAll(page.getResultList());           
         }
-
         return resultList;
     }
 
@@ -51,15 +47,11 @@ public class DefaultHttpConsumer implements HttpConsumer {
         var resultList = new LinkedList<People>();
         var nextUrl = PEOPLE.queryWithNameUri(name);
 
-        while (nextUrl != null) {
-            log.info("------url: " + nextUrl + " :---:");
+        while (nextUrl != null) {            
             var page = restTemplate.getForObject(nextUrl, PeoplePage.class);
             nextUrl = page.getNext();
-            resultList.addAll(page.getResultList());
-            log.info("------nextUrl: " + nextUrl + " :size: " + resultList.size());
-        }
-        
-        
+            resultList.addAll(page.getResultList());           
+        }        
         return resultList;
     }
 

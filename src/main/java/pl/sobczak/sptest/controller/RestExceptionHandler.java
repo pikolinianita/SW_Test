@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 @CommonsLog
-@ControllerAdvice
+//@ControllerAdvice
 public class RestExceptionHandler {
 
     @ExceptionHandler({RestExceptions.AkeitaException.class})

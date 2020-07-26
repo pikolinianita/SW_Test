@@ -7,7 +7,7 @@ package pl.sobczak.sptest.consumerhttp;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 public enum SwapiUrls {
 
@@ -22,7 +22,6 @@ public enum SwapiUrls {
     }
 
     public String queryWithNameUri(String queryString) {
-
         return urlAddress + "?search=" + queryString;
     }
 

@@ -14,9 +14,9 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
- * simple class for transfer query from REST service to HttpConsumer module
- *
- * @author piko
+ * simple Value class for transfer query from REST service to HttpConsumer module
+ * and part of Report 
+ * @author Lukasz Sobczak
  */
 @Accessors(chain = true)
 @Getter()

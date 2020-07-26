@@ -11,7 +11,7 @@ import java.util.Set;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 public interface HttpConsumer {
     

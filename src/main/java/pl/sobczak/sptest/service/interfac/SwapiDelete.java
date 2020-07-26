@@ -7,7 +7,7 @@ package pl.sobczak.sptest.service.interfac;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 public interface SwapiDelete {
 

@@ -10,7 +10,7 @@ import lombok.ToString;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 @ToString
 @Getter

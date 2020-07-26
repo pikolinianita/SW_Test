@@ -14,27 +14,25 @@ import pl.sobczak.sptest.service.interfac.SwapiWrite;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 @Component
 public class DefaultWriteService implements SwapiWrite {
 
-    ReportRepository repo;
-    
-    HttpConsumer httpConsumer;
+    private final ReportRepository repo;
+
+    private final HttpConsumer httpConsumer;
 
     public DefaultWriteService(ReportRepository repo, HttpConsumer httpConsumer) {
         this.repo = repo;
         this.httpConsumer = httpConsumer;
     }
-    
+
     @Override
     public boolean createOrUpdate(Long id, SwRequest request) {
-        
         new Report(id)
                 .performQuery(request, httpConsumer)
                 .save(repo);
-        
         return true;
     }
 

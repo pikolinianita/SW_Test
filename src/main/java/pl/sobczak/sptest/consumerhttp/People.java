@@ -11,20 +11,19 @@ import lombok.ToString;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 @Getter
 @ToString
 public class People {
-    
+
     private final String name;
 
     private final String swapiId;
 
     private final Set<String> filmIds;
-    
-    private final String homePlanetId;
 
+    private final String homePlanetId;
 
     public People(String name, String swapiId, Set<String> filmIds, String planetId) {
         this.name = name;
@@ -32,6 +31,5 @@ public class People {
         this.filmIds = filmIds;
         this.homePlanetId = planetId;
     }
-    
-    
+
 }

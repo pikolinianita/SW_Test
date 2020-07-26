@@ -30,7 +30,7 @@ import pl.sobczak.sptest.exceptions.RestExceptions;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 @CommonsLog
 @Accessors(chain = true)
@@ -62,6 +62,7 @@ public class Report {
         var people = httpConsumer.findPeople(request.getHeroName());
         validateAndPrune(planets, people);  //changes arguments
         var films = httpConsumer.findFilms(getSetOfFilmId(people));
+        //there is exactly one planet or exception was thrown earlier
         planetId = Long.parseLong(planets.get(0).getSwapiId());
         heroes = composeHeroes(people, films);
         return this;
@@ -75,10 +76,10 @@ public class Report {
         String errorMsg = "";
         planets.removeIf(p -> !p.getName().equalsIgnoreCase(request.getHeroPlanet()));
         if (planets.size() != 1) {
-            errorMsg += "There is no Planet with that name!/n";
+            errorMsg += "There is no Planet with that name!\n";
         }
         if (people.isEmpty()) {
-            errorMsg += "There is no Hero with such name!/n";
+            errorMsg += "There is no Hero with such name!\n";
         }
         if (!errorMsg.isEmpty()) {
             throw new RestExceptions.HttpResourceNotFound(errorMsg);
@@ -91,7 +92,6 @@ public class Report {
             throw new RestExceptions.HttpQueryNoHits("There is no hero with name containing " + request.getHeroName()
                     + " and born on " + request.getHeroPlanet());
         }
-
     }
 
     private Set<String> getSetOfFilmId(List<People> people) {
@@ -101,7 +101,6 @@ public class Report {
     }
 
     private Set<Hero> composeHeroes(List<People> people, Set<Film> films) {
-
         var movieMap = films.stream()
                 .map(Movie::new)
                 .collect(toMap(movie -> String.valueOf(movie.getSwapiId()),

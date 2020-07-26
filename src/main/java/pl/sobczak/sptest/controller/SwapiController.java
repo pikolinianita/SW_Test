@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import pl.sobczak.sptest.domain.ReportDTO;
 import pl.sobczak.sptest.exceptions.RestExceptions;
 import pl.sobczak.sptest.domain.SwRequest;
@@ -25,33 +26,25 @@ import pl.sobczak.sptest.service.interfac.SwapiWrite;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 @CommonsLog
 @RestController
 @RequestMapping(path = "/report")
 public class SwapiController {
 
-    SwapiRead readService;
+    private final SwapiRead readService;
 
-    SwapiWrite writeService;
+    private final SwapiWrite writeService;
 
-    SwapiDelete deleteService;
+    private final SwapiDelete deleteService;
 
     public SwapiController(SwapiRead readService, SwapiWrite writeService, SwapiDelete deleteService) {
         this.readService = readService;
         this.writeService = writeService;
         this.deleteService = deleteService;
     }
-    
-    
 
-    @GetMapping("/akeita")
-    public Object getAkeita() {
-        log.info("Akeita invoked");
-        throw new RestExceptions.AkeitaException("No Cofee Today!");
-    }
- 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ReportDTO getOne(@PathVariable Long id) {
@@ -77,7 +70,7 @@ public class SwapiController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAll() {
         log.info("DeleteAll invoked");
-       deleteService.deleteAll();
+        deleteService.deleteAll();
     }
 
     @PutMapping("/{id}")
@@ -87,4 +80,9 @@ public class SwapiController {
         writeService.createOrUpdate(id, input);
     }
 
+    @GetMapping("/akeita")
+    public Object getAkeita() {
+        log.info("Akeita invoked");
+        throw new RestExceptions.AkeitaException("No Cofee Today!");
+    }
 }

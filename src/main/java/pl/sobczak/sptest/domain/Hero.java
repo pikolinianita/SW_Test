@@ -22,7 +22,7 @@ import pl.sobczak.sptest.consumerhttp.People;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 @Accessors(chain = true)
 @Getter(AccessLevel.PACKAGE)

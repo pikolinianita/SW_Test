@@ -10,7 +10,7 @@ import pl.sobczak.sptest.domain.ReportDTO;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 public interface SwapiRead {
 

@@ -15,7 +15,7 @@ import pl.sobczak.sptest.domain.ReportLineForGetAll;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 public interface ReportRepository extends JpaRepository<Report, Long>{
     

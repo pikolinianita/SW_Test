@@ -16,7 +16,7 @@ import pl.sobczak.sptest.consumerhttp.Film;
 
 /**
  *
- * @author piko
+ * @author Lukasz Sobczak
  */
 @Accessors(chain = true)
 @Getter(AccessLevel.PACKAGE)

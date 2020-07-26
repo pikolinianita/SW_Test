@@ -22,7 +22,7 @@ import pl.sobczak.sptest.domain.repository.ReportRepository;
 @Component
 public class DefaultReadDeleteService implements SwapiDelete, SwapiRead {
 
-    ReportRepository repo;
+    private final ReportRepository repo;
 
     public DefaultReadDeleteService(ReportRepository repo) {
         this.repo = repo;
