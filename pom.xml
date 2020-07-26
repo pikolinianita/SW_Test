@@ -17,6 +17,10 @@
 
     <properties>
         <java.version>11</java.version>
+        <sonar.projectKey>pikolinianita_SW_Test</sonar.projectKey>
+        <sonar.organization>pikolinianita</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.login>ec25dddaf7129a11362363b9e7d90221cc826448</sonar.login>
     </properties>
 
     <dependencies>
