@@ -35,14 +35,5 @@ List<ReportLineDTO> result;
         this.query_criteria_character_phrase = heroName;
         this.query_criteria_planet_name = planet;
     }
-    
-//used in tests only    
-public List<ReportLineDTO> getResult(){
-    return result;
-}
-
-// public Long getReportId(){
-//        return report_id;
-//    }
 
 }
