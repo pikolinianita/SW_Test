@@ -5,6 +5,7 @@
  */
 package pl.sobczak.sptest.controller;
 
+import pl.sobczak.sptest.domain.FakeReportDTO;
 import java.util.List;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import pl.sobczak.sptest.domain.ReportDTO;
 import pl.sobczak.sptest.exceptions.RestExceptions;
 import pl.sobczak.sptest.domain.SwRequest;
 import pl.sobczak.sptest.service.interfac.SwapiDelete;
@@ -49,6 +51,13 @@ public class SwapiController {
         throw new RestExceptions.AkeitaException("No Cofee Today!");
     }
 
+    @GetMapping("/fake/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public FakeReportDTO getFakeOne(@PathVariable Long id) {
+        log.info("Get invokedwith id: " + id);
+        return readService.getFakeOne(id);
+    }
+    
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ReportDTO getOne(@PathVariable Long id) {
@@ -58,7 +67,7 @@ public class SwapiController {
 
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
-    public List<ReportDTO> getAll() {
+    public List<FakeReportDTO> getAll() {
         log.info("getAll invoked");
         throw new UnsupportedOperationException("Not supported yet.");
     }

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import static java.util.stream.Collectors.*;
-import javax.persistence.CascadeType;
+import static javax.persistence.CascadeType.*;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -47,7 +47,7 @@ public class Report {
     @Embedded
     SwRequest request;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {MERGE, PERSIST})
     Set<Hero> heroes;
 
     public Report(Long id) {

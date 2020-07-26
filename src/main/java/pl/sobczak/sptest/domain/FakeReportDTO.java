@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.sobczak.sptest.controller;
+package pl.sobczak.sptest.domain;
 
 import lombok.Getter;
 
@@ -12,15 +12,15 @@ import lombok.Getter;
  * @author piko
  */
 @Getter
-public class ReportDTO {
+public class FakeReportDTO {
 
     String name;
 
-    public ReportDTO() {
+    public FakeReportDTO() {
         name = "killer";
     }
 
-    public ReportDTO(String name) {
+    public FakeReportDTO(String name) {
         this.name = name;
     }
 

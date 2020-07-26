@@ -8,8 +8,11 @@ package pl.sobczak.sptest.service;
 import pl.sobczak.sptest.service.interfac.SwapiRead;
 import pl.sobczak.sptest.service.interfac.SwapiDelete;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.sobczak.sptest.controller.ReportDTO;
+import pl.sobczak.sptest.domain.FakeReportDTO;
+import pl.sobczak.sptest.domain.ReportDTO;
+import pl.sobczak.sptest.domain.repository.ReportRepository;
 
 /**
  *
@@ -18,9 +21,20 @@ import pl.sobczak.sptest.controller.ReportDTO;
 @Component
 public class DefaultReadDeleteService implements SwapiDelete, SwapiRead {
 
+    @Autowired
+    ReportRepository repo;
+    
+    
+    @Override
+    public FakeReportDTO getFakeOne(Long id) {
+        return new FakeReportDTO("Fake Report with id " + id);
+    }
     @Override
     public ReportDTO getOne(Long id) {
-        return new ReportDTO("Fake Report with id " + id);
+        var result = repo.getReportDTOHeader(id);
+        var lines = repo.getReportLinesWithReportID(id);
+        result.setResult(lines);
+        return result ;
     }
 
     @Override

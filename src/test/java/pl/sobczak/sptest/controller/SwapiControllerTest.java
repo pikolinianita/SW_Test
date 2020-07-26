@@ -48,7 +48,7 @@ class SwapiControllerTest {
         
         long id = 1;
         
-        mvc.perform(get("/report/{id}", id))
+        mvc.perform(get("/report/fake/{id}", id))
                 .andDo(print())
                 .andExpect(content().string(containsString("Fake Report with id 1")))
                 .andExpect(status().isOk());

@@ -6,7 +6,8 @@
 package pl.sobczak.sptest.service.interfac;
 
 import java.util.List;
-import pl.sobczak.sptest.controller.ReportDTO;
+import pl.sobczak.sptest.domain.FakeReportDTO;
+import pl.sobczak.sptest.domain.ReportDTO;
 
 /**
  *
@@ -15,6 +16,8 @@ import pl.sobczak.sptest.controller.ReportDTO;
 public interface SwapiRead {
 
     ReportDTO getOne(Long id);
+    
+    FakeReportDTO getFakeOne(Long id); 
 
     List<ReportDTO> getAll();
 

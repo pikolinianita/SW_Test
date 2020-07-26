@@ -7,7 +7,6 @@ package pl.sobczak.sptest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.sobczak.sptest.consumerhttp.DefaultHttpConsumer;
 import pl.sobczak.sptest.consumerhttp.HttpConsumer;
 import pl.sobczak.sptest.domain.Report;
 import pl.sobczak.sptest.domain.SwRequest;
