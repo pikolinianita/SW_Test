@@ -67,15 +67,16 @@ public class SwapiController {
 
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
-    public List<FakeReportDTO> getAll() {
+    public List<ReportDTO> getAll() {
         log.info("getAll invoked");
-        throw new UnsupportedOperationException("Not supported yet.");
+        return readService.getAll();
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<?> deleteOne(@PathVariable Long id) {
         log.info("Delete invoked with id: " + id);
+        deleteService.deleteOne(id);
         return null;
     }
 
@@ -86,7 +87,7 @@ public class SwapiController {
        deleteService.deleteAll();
     }
 
-    @PutMapping("/{report_id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void createOrUpdate(@PathVariable Long id, @RequestBody SwRequest input) {
         log.info("put invoked");

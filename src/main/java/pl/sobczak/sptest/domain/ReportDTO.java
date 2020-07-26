@@ -1,6 +1,7 @@
 package pl.sobczak.sptest.domain;
 
 import java.util.List;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
@@ -17,6 +18,7 @@ import lombok.experimental.Accessors;
  */
 @Accessors(chain=true)
 @Setter
+@Getter
 @ToString
 public class ReportDTO {
     
