@@ -5,3 +5,5 @@
 Program łączy się z https://Swapi.dev , zapisuje dane w bazie danych (H2, in memory), zapytany zwraca dane z bazy danych. Dokładna specyfikacja w pliku pdf, ale:
  - łączy się z swapi.dev, bo swapi.co nie działa
  - w bazie jest tylko 6 filmow (epizody 1-6), nie ma trzech ostatnich
+
+Chyba nie przekombinowałem
