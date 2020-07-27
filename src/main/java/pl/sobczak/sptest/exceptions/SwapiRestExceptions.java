@@ -9,27 +9,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- *@author Lukasz Sobczak 
- * Class With all Exceptions that propagate to user - to have all
- * exceptions in one file (no sophisticated logic here)
+ * @author Lukasz Sobczak Class With all Exceptions that propagate to user - to
+ * have all exceptions in one file (no sophisticated logic here)
  */
 public class SwapiRestExceptions extends Exception {
 
     private SwapiRestExceptions() {
         //Use static inner classes only
     }
-
-//    @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
-//    public static class HttpClientNoConnectionException extends RuntimeException {
-//
-//        public HttpClientNoConnectionException(String text) {
-//            super(text);
-//        }
-//
-//        public HttpClientNoConnectionException(String text, Throwable cause) {
-//            super(text, cause);
-//        }
-//    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public static class HttpResourceNotFound extends RuntimeException {
@@ -47,22 +34,6 @@ public class SwapiRestExceptions extends Exception {
         }
     }
 
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    static class HttpNoCorrectCombination extends RuntimeException {
-//
-//        public HttpNoCorrectCombination(String text) {
-//            super(text);
-//        }
-//    }
-
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    static class NoSuchRecord extends RuntimeException {
-//
-//        public NoSuchRecord(String text) {
-//            super(text);
-//        }
-//    }
-
     @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
     public static class AkeitaException extends RuntimeException {
 
@@ -70,21 +41,13 @@ public class SwapiRestExceptions extends Exception {
             super(message);
         }
     }
-//
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    public static class BadSwapiRequest extends RuntimeException {
-//
-//        public BadSwapiRequest(String text) {
-//            super(text);
-//        }
-//    }
-    
+
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public static class RecordNotFound extends RuntimeException {
-    
+
         public RecordNotFound(String text) {
             super(text);
-        }        
+        }
     }
-    
- }
+
+}
