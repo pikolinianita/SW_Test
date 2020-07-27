@@ -28,6 +28,8 @@ public class DefaultWriteService implements SwapiWrite {
         this.httpConsumer = httpConsumer;
     }
 
+    //only save, as "update" is meaningless - one can change query/planet - I can only overwrite old report 
+    // and Spring Repository makes merge when necessary
     @Override
     public boolean createOrUpdate(Long id, SwRequest request) {
         new Report(id)
