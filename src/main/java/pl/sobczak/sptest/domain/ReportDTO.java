@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
  */
 
 /**
- *
+ *  names are not in Java convention, because they are converted to JSON
  * @author Lukasz Sobczak
  */
 @Accessors(chain=true)

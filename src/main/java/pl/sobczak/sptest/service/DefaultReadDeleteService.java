@@ -25,17 +25,17 @@ import pl.sobczak.sptest.exceptions.SwapiRestExceptions;
 @Component
 public class DefaultReadDeleteService implements SwapiDelete, SwapiRead {
 
-    private final ReportRepository repo;
+    private final ReportRepository repository;
 
     public DefaultReadDeleteService(ReportRepository repo) {
-        this.repo = repo;
+        this.repository = repo;
     }
 
     @Override
     public ReportDTO getOne(Long id) {
         try {
-            var result = repo.getReportDTOHeader(id);
-            var lines = repo.getReportLinesFromReport(id);
+            var result = repository.getReportDTOHeader(id);
+            var lines = repository.getReportLinesFromReport(id);
             result.setResult(lines);
             return result;
         } catch (NullPointerException ex) {
@@ -48,8 +48,8 @@ public class DefaultReadDeleteService implements SwapiDelete, SwapiRead {
     @Transactional
     public boolean deleteOne(Long id) {
         try {
-            repo.deleteById(id);
-            repo.deleteOrphans();
+            repository.deleteById(id);
+            repository.deleteOrphans();
             return true;
         } catch (EmptyResultDataAccessException ex) {
             throw new SwapiRestExceptions.RecordNotFound("No record with id: " + id);
@@ -59,15 +59,15 @@ public class DefaultReadDeleteService implements SwapiDelete, SwapiRead {
     @Override
     @Transactional
     public boolean deleteAll() {
-        repo.deleteAll();
-        repo.deleteOrphans();
+        repository.deleteAll();
+        repository.deleteOrphans();
         return true;
     }
 
     @Override
     public List<ReportDTO> getAll() {
-        var result = repo.getAllReportDTOHeaders();
-        var lines = repo.getAllReportLines();
+        var result = repository.getAllReportDTOHeaders();
+        var lines = repository.getAllReportLines();
         var linesMap = lines.stream()
                 .collect(groupingBy(ReportLineForGetAll::getReport_Id,
                         mapping(ReportLineDTO::new, toList())));

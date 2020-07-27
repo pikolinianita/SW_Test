@@ -40,9 +40,9 @@ class Hero {
     
     String name;
 
-    Hero(People ppl) {
-        swapiId = Long.parseLong(ppl.getSwapiId());
-        name = ppl.getName();
+    Hero(People person) {
+        swapiId = Long.parseLong(person.getSwapiId());
+        name = person.getName();
         movies = new HashSet<>();
     }
 

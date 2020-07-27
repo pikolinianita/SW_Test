@@ -9,7 +9,8 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- *
+ * names are not in Java convention, because they are converted to JSON
+ * 
  * @author Lukasz Sobczak
  */
 @ToString
@@ -18,8 +19,10 @@ public class ReportLineDTO {
 
     Long film_id;
     String film_name;
+    
     Long character_id;
     String character_name;
+    
     Long planet_id;
     String planet_name;
     

@@ -12,13 +12,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
+ * gets data (from Jackson) from one page (up to 10 hits)
  *
  * @author Lukasz Sobczak
  */
-
 public class PlanetPage {
-    
-     private String next;
+
+    private String next;
 
     List<Planet> resultList = new LinkedList<>();
 
@@ -42,19 +42,18 @@ public class PlanetPage {
                         )
                         .collect(Collectors.toCollection(LinkedList::new)));
     }
-    
+
     private String getId(String url) {
         var tmp = url.substring(0, url.length() - 1);
         return tmp.substring(tmp.lastIndexOf('/') + 1);
     }
-    
- List<Planet> getResultList() {
+
+    List<Planet> getResultList() {
         return resultList;
     }
- 
+
     String getNext() {
         return next;
     }
 
-    
 }

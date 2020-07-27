@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 /**
- *
+ * I could add this to main configuration, but I want all httpClient stuff in one place/package
  * @author Lukasz Sobczak
  */
 @Configuration

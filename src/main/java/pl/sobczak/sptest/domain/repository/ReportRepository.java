@@ -21,14 +21,15 @@ import pl.sobczak.sptest.domain.ReportLineForGetAll;
  */
 public interface ReportRepository extends JpaRepository<Report, Long> {
 
-    //each object contain all data for output, just put list into ReportDTO 
+    //each object contain all data for output "result line", just put list into ReportDTO 
     @Query("Select new pl.sobczak.sptest.domain.ReportLineDTO(r.request.heroPlanet, r.planetId, m.name, m.swapiId, h.name, h.swapiId) from Report r join r.heroes h join h.movies m where r.reportId = :id")
     public List<ReportLineDTO> getReportLinesFromReport(Long id);
 
-    //each object has all data for output AND reportID, so list can be grouped by reportID and assigned to correct report
+    //each object has all data for output "result line" AND reportID, so list can be grouped by reportID and assigned to correct report
     @Query("Select new pl.sobczak.sptest.domain.ReportLineForGetAll(r.reportId, r.request.heroPlanet, r.planetId, m.name, m.swapiId, h.name, h.swapiId) from Report r join r.heroes h join h.movies m")
     public List<ReportLineForGetAll> getAllReportLines();
 
+    //base for single report, ReportLines has to be added
     @Query("Select new pl.sobczak.sptest.domain.ReportDTO (r.reportId, r.request.heroName, r.request.heroPlanet ) from Report r Where r.reportId = :id")
     public ReportDTO getReportDTOHeader(Long id);
 

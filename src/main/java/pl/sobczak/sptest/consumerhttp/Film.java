@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
- *
+ * no filmPage class, as I always ask for films one by one
  * @author Lukasz Sobczak
  */
 

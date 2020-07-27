@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * gets data (from Jackson) from one page
+ * gets data (from Jackson) from one page (up to 10 hits)
  * @author Lukasz Sobczak
  */
 public class PeoplePage {

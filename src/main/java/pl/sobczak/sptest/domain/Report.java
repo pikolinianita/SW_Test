@@ -29,7 +29,7 @@ import pl.sobczak.sptest.domain.repository.ReportRepository;
 import pl.sobczak.sptest.exceptions.SwapiRestExceptions;
 
 /**
- *
+ * aggregate root
  * @author Lukasz Sobczak
  */
 @CommonsLog
@@ -60,7 +60,7 @@ public class Report {
         request = req;
         var planets = httpConsumer.findPlanet(request.getHeroPlanet());
         var people = httpConsumer.findPeople(request.getHeroName());
-        validateAndPrune(planets, people);  //changes arguments
+        validateAndPrune(planets, people);  //function changes arguments
         var films = httpConsumer.findFilms(getSetOfFilmId(people));
         //there is exactly one planet or exception was thrown earlier
         planetId = Long.parseLong(planets.get(0).getSwapiId());
@@ -74,6 +74,7 @@ public class Report {
     //Hero name must contain search phrase and must be born on query planet
     void validateAndPrune(List<Planet> planets, List<People> people) {
         String errorMsg = "";
+        // in case planet name is substring of other planet name
         planets.removeIf(p -> !p.getName().equalsIgnoreCase(request.getHeroPlanet()));
         if (planets.size() != 1) {
             errorMsg += "There is no Planet with that name!\n";
