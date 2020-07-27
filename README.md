@@ -6,4 +6,4 @@ Program łączy się z https://Swapi.dev , zapisuje dane w bazie danych (H2, in 
  - łączy się z swapi.dev, bo swapi.co nie działa
  - w bazie jest tylko 6 filmow (epizody 1-6), nie ma trzech ostatnich
 
-Chyba nie przekombinowałem
+Wszystkie testy są wykonywane jako "unit tests", mimo że większość zalicza się do integracyjnych. Ale ponieważ całość testów wykonuje się krótko (w minutę), większość programu to interakcje z bazą H2 lub SWapi, to częste wykonywanie wszyskich testów ma sens.
