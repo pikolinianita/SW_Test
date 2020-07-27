@@ -39,11 +39,11 @@ class HttpConsumerTest {
     @DisplayName("Find New Hope")
     void findFilmTest() {
 
-        var film = consumer.findFilms(List.of("1"));
+        var films = consumer.findFilms(List.of("1"));
 
-        assertThat(film).as("A New Hope").hasSize(1)
-                .allMatch(f -> f.getName().equalsIgnoreCase("A New Hope"), "Title match")
-                .allMatch(f -> f.getSwapiId().equals("1"), "Id match");
+        assertThat(films).as("A New Hope").hasSize(1)
+                .allMatch(film -> film.getName().equalsIgnoreCase("A New Hope"), "Title match")
+                .allMatch(film -> film.getSwapiId().equals("1"), "Id match");
     }
 
     @Test
@@ -51,8 +51,8 @@ class HttpConsumerTest {
     void findOriginalTrilogyTest() {
 
         var titles = List.of("A New Hope", "Return of the Jedi", "The Empire Strikes Back");
-        Condition<Film> inOriginalTrilogy = new Condition<>(f -> titles.contains(f.getName()), "in Original Trilogy");
-        Condition<Film> withCorrectSwapiIds = new Condition<>(f -> List.of("1", "2", "3").contains(f.getSwapiId()), "has right Ids");
+        Condition<Film> inOriginalTrilogy = new Condition<>(film -> titles.contains(film.getName()), "in Original Trilogy");
+        Condition<Film> withCorrectSwapiIds = new Condition<>(film -> List.of("1", "2", "3").contains(film.getSwapiId()), "has right Ids");
 
         var films = consumer.findFilms(List.of("1", "2", "3"));
 
@@ -69,8 +69,8 @@ class HttpConsumerTest {
         var planets = consumer.findPlanet("Tatooine");
 
         assertThat(planets).as("Tattoine only").hasSize(1)
-                .allMatch(p -> p.getName().equals("Tatooine"))
-                .allMatch(p -> p.getSwapiId().equals("1"));
+                .allMatch(planet -> planet.getName().equals("Tatooine"))
+                .allMatch(planet -> planet.getSwapiId().equals("1"));
     }
 
     @Test
@@ -81,32 +81,32 @@ class HttpConsumerTest {
 
         assertThat(planets).as("at least 39 planets")
                 .hasSizeGreaterThan(38)
-                .allMatch(p -> p.getName().toLowerCase().contains("a"));
+                .allMatch(planet -> planet.getName().toLowerCase().contains("a"));
     }
 
     @Test
     @DisplayName("Find Leia")
-    void findOnePerson(){
-        
+    void findOnePerson() {
+
         var people = consumer.findPeople("Leia Organa");
-              
+
         assertThat(people).as("Leia only").isNotEmpty()
-                .allMatch(p -> p.getName().equals("Leia Organa"))
-                .allMatch(p -> p.getSwapiId().equals("5"))
-                .allMatch(p -> p.getHomePlanetId().equals("2"))
-                .allMatch(p-> p.getFilmIds().containsAll(List.of("1", "2", "3", "6")));
+                .allMatch(person -> person.getName().equals("Leia Organa"))
+                .allMatch(person -> person.getSwapiId().equals("5"))
+                .allMatch(person -> person.getHomePlanetId().equals("2"))
+                .allMatch(person -> person.getFilmIds().containsAll(List.of("1", "2", "3", "6")));
     }
-    
+
     @Test
     @DisplayName("Find Many People")
-    void findManyPersons(){
-        
+    void findManyPersons() {
+
         var people = consumer.findPeople("o");
-        
+
         assertThat(people).as("many people with o in name")
                 .hasSizeGreaterThan(39)
-                .allMatch(p -> p.getName().toLowerCase().contains("o"))
-                .allMatch(p -> p.getFilmIds().isEmpty()==false);
+                .allMatch(person -> person.getName().toLowerCase().contains("o"))
+                .allMatch(person -> person.getFilmIds().isEmpty() == false);
     }
-    
+
 }

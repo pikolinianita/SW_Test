@@ -34,13 +34,13 @@ class ReportSaveTest {
     @BeforeEach
     void setUp(TestInfo testInfo) {
         log.info("=============== " + testInfo.getDisplayName() + " =============== ");
-            }
-    
+    }
+
     @AfterEach
     void TearDown(TestInfo testInfo) {
         log.info("=====Tear Down: " + testInfo.getDisplayName() + " =============== ");
-            }
-    
+    }
+
     @Test
     void saveOne() {
         var moviesSet = Set.of(
@@ -56,7 +56,7 @@ class ReportSaveTest {
         assertThat(repository.count()).as("reports").isEqualTo(1L);
         assertThat(repository.countHeroes()).as("heroes").isEqualTo(1L);
         assertThat(repository.countMovies()).isEqualTo(2L);
-        
+
     }
 
     @Test
@@ -84,7 +84,7 @@ class ReportSaveTest {
                 .setHeroes(Set.of(leia, luke));
 
         report3.save(repository);
-        
+
         assertThat(repository.count()).isEqualTo(3L);
         assertThat(repository.countHeroes()).isEqualTo(2L);
         assertThat(repository.countMovies()).isEqualTo(2L);
@@ -108,7 +108,7 @@ class ReportSaveTest {
                 .setHeroes(Set.of(leia));
 
         report.save(repository);
-        
+
         assertThat(repository.count()).isEqualTo(1L);
         assertThat(repository.countHeroes()).isEqualTo(2L);
         assertThat(repository.countMovies()).isEqualTo(2L);

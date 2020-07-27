@@ -66,21 +66,21 @@ class SwapiControllerTest {
                 .andReturn();
 
         var JSONresponse = result.getResponse().getContentAsString();
-        
+
         assertThat(JSONresponse).as("json body")
                 .matches(JSON -> JSON.split("Leia Organa").length > 3)
                 .matches(JSON -> JSON.split("Alderaan").length > 8);
-        
+
         mvc.perform(delete("/report/{first}", first))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        
+
         mvc.perform(get("/report/"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("[]")))
                 .andReturn();
-           
+
     }
 
 }

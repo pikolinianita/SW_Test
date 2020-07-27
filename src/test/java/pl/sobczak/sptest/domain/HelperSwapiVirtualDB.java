@@ -12,53 +12,55 @@ import pl.sobczak.sptest.consumerhttp.Planet;
 
 /**
  * helper class for generating fake responses from Swapi.dev
+ *
  * @author Lukasz Sobczak
  */
 public class HelperSwapiVirtualDB {
-   
+
     //name, Id
-   public Film hope(){
-        return new Film("A New Hope","1");
+    public Film hope() {
+        return new Film("A New Hope", "1");
     }
-    
-   public Film strike(){
+
+    public Film strike() {
         return new Film("Imperium Strikes Back", "2");
     }
-    
-   public Film roJedi(){
+
+    public Film roJedi() {
         return new Film("Return of Jedi", "3");
-}
+    }
+
     //name, Id, Set of Films Id, Planet Id
-    public People luke(){
-        return new People("Luke Skywalker","1", Set.of("1","2","3"), "1"); 
+    public People luke() {
+        return new People("Luke Skywalker", "1", Set.of("1", "2", "3"), "1");
     }
-    
-    public People leia(){
-        return new People("Leia Organa","2", Set.of("1","2","3"), "2");
-    }    
-    
-    public People owen(){
-        return new People("Owen Lars","3", Set.of("1"),"1");
+
+    public People leia() {
+        return new People("Leia Organa", "2", Set.of("1", "2", "3"), "2");
     }
-    
-    public People wampa(){
-        return new People("Wampa","4", Set.of("2"), "3");
+
+    public People owen() {
+        return new People("Owen Lars", "3", Set.of("1"), "1");
     }
-    
-    public People ewok(){
-        return new People("Generic Ewok","5",Set.of("3"),"3");
+
+    public People wampa() {
+        return new People("Wampa", "4", Set.of("2"), "3");
     }
-    
+
+    public People ewok() {
+        return new People("Generic Ewok", "5", Set.of("3"), "3");
+    }
+
     //Name, Id    
-    public Planet tatooine(){
+    public Planet tatooine() {
         return new Planet("Tatooine", "1");
     }
-    
-    public Planet alderaan(){
+
+    public Planet alderaan() {
         return new Planet("Alderaan", "2");
     }
-   
-    public Planet other(){
+
+    public Planet other() {
         return new Planet("Other", "3");
     }
 }

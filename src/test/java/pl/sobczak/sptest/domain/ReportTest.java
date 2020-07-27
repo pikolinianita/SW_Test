@@ -65,7 +65,7 @@ class ReportTest {
         when(httpConsumer.findFilms(Set.of("1", "2", "3"))).thenReturn(filmSet);
 
         report.performQuery(request, httpConsumer);
-        
+
         softly.assertThat(report).as("sWRequest Copied")
                 .hasFieldOrPropertyWithValue("planetId", 1L)
                 .extracting("request")

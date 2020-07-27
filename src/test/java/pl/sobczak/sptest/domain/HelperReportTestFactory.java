@@ -9,6 +9,7 @@ import java.util.Set;
 
 /**
  * Helper class for making few default reports.
+ *
  * @author Lukasz Sobczak
  */
 public class HelperReportTestFactory {
@@ -34,31 +35,31 @@ public class HelperReportTestFactory {
         var hope = new Movie().setSwapiId(100L).setName("A Hope");
         var strike = new Movie().setSwapiId(200L).setName("Strike Back");
         var roJ = new Movie().setSwapiId(300L).setName("ReturnOfJedi");
-        var luke = new Hero().setSwapiId(10L).setName("Luke S").setMovies(Set.of(hope,strike,roJ));
-        var Obi =  new Hero().setSwapiId(20L).setName("Obi-Wan K").setMovies(Set.of(hope));
-        
+        var luke = new Hero().setSwapiId(10L).setName("Luke S").setMovies(Set.of(hope, strike, roJ));
+        var Obi = new Hero().setSwapiId(20L).setName("Obi-Wan K").setMovies(Set.of(hope));
+
         var result = new Report()
                 .setReportId(1L)
                 .setPlanetId(99L)
                 .setRequest(new SwRequest().setHeroName("K").setHeroPlanet("Tatooine"))
-                .setHeroes(Set.of(luke,Obi));
+                .setHeroes(Set.of(luke, Obi));
         return result;
 
     }
-    
-    public Report LeiaOnAlderaan(){
+
+    public Report LeiaOnAlderaan() {
         var hope = new Movie().setSwapiId(100L).setName("A Hope");
         var strike = new Movie().setSwapiId(200L).setName("Strike Back");
         var roJ = new Movie().setSwapiId(300L).setName("ReturnOfJedi");
-        var leia = new Hero().setSwapiId(30L).setName("Leia O").setMovies(Set.of(hope,strike,roJ));
-        
+        var leia = new Hero().setSwapiId(30L).setName("Leia O").setMovies(Set.of(hope, strike, roJ));
+
         var result = new Report()
                 .setReportId(2L)
                 .setPlanetId(199L)
                 .setRequest(new SwRequest().setHeroName("Leia").setHeroPlanet("Alderaan"))
                 .setHeroes(Set.of(leia));
         return result;
-        
+
     }
-    
+
 }
