@@ -9,12 +9,14 @@ import pl.sobczak.sptest.service.interfac.SwapiRead;
 import pl.sobczak.sptest.service.interfac.SwapiDelete;
 import java.util.List;
 import static java.util.stream.Collectors.*;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sobczak.sptest.domain.ReportDTO;
 import pl.sobczak.sptest.domain.ReportLineDTO;
 import pl.sobczak.sptest.domain.ReportLineForGetAll;
 import pl.sobczak.sptest.domain.repository.ReportRepository;
+import pl.sobczak.sptest.exceptions.SwapiRestExceptions;
 
 /**
  *
@@ -31,18 +33,27 @@ public class DefaultReadDeleteService implements SwapiDelete, SwapiRead {
 
     @Override
     public ReportDTO getOne(Long id) {
-        var result = repo.getReportDTOHeader(id);
-        var lines = repo.getReportLinesFromReport(id);
-        result.setResult(lines);
-        return result;
+        try {
+            var result = repo.getReportDTOHeader(id);
+            var lines = repo.getReportLinesFromReport(id);
+            result.setResult(lines);
+            return result;
+        } catch (NullPointerException ex) {
+            throw new SwapiRestExceptions.RecordNotFound("No record with id: " + id);
+        }
+
     }
 
     @Override
     @Transactional
     public boolean deleteOne(Long id) {
-        repo.deleteById(id);
-        repo.deleteOrphans();
-        return true;
+        try {
+            repo.deleteById(id);
+            repo.deleteOrphans();
+            return true;
+        } catch (EmptyResultDataAccessException ex) {
+            throw new SwapiRestExceptions.RecordNotFound("No record with id: " + id);
+        }
     }
 
     @Override

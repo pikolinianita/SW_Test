@@ -10,20 +10,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import pl.sobczak.sptest.exceptions.RestExceptions;
+import pl.sobczak.sptest.exceptions.SwapiRestExceptions;
 import static org.assertj.core.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 
@@ -46,7 +42,7 @@ class SwapiControllerTest {
                 .andDo(print())
                 .andExpect(status().isIAmATeapot())
                 .andExpect(result -> assertEquals("No Cofee Today!", result.getResolvedException().getMessage()))
-                .andExpect(result -> assertTrue(result.getResolvedException() instanceof RestExceptions.AkeitaException));
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof SwapiRestExceptions.AkeitaException));
 
     }
 

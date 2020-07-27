@@ -8,10 +8,10 @@ package pl.sobczak.sptest.domain;
 import java.util.Set;
 
 /**
- *
+ * Helper class for making few default reports.
  * @author Lukasz Sobczak
  */
-public class ReportTestFactory {
+public class HelperReportTestFactory {
 
     public Report lukeOnTatooine() {
 

@@ -7,6 +7,7 @@ package pl.sobczak.sptest.service;
 
 import lombok.extern.apachecommons.CommonsLog;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -14,12 +15,12 @@ import org.junit.jupiter.api.TestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.transaction.annotation.Transactional;
-import pl.sobczak.sptest.domain.ReportTestFactory;
+import pl.sobczak.sptest.domain.HelperReportTestFactory;
 import pl.sobczak.sptest.domain.repository.ReportRepository;
+import pl.sobczak.sptest.exceptions.SwapiRestExceptions;
 
 /**
- *
+ * 
  * @author Lukasz Sobczak
  */
 @CommonsLog
@@ -31,7 +32,7 @@ class DefaultReadDeleteServiceTest {
     DefaultReadDeleteService service;
 
     @Autowired
-    ReportRepository rp;
+    ReportRepository repository;
 
     @BeforeEach
     void setUp(TestInfo testInfo) {
@@ -41,8 +42,8 @@ class DefaultReadDeleteServiceTest {
     @Test
     @DisplayName("Test read service with one record")
     void testServiceOne() {
-        var report = new ReportTestFactory().lukeOnTatooine();
-        rp.save(report);
+        var report = new HelperReportTestFactory().lukeOnTatooine();
+        repository.save(report);
 
         var result = service.getOne(1L);
 
@@ -53,11 +54,11 @@ class DefaultReadDeleteServiceTest {
     @Test
     @DisplayName("Test read service : get one record out of two")
     void testServiceTwoReports() {
-        final var reportTestFactory = new ReportTestFactory();
+        final var reportTestFactory = new HelperReportTestFactory();
         var report = reportTestFactory.lukeAndWanOnTatooine();
         var report2 = reportTestFactory.LeiaOnAlderaan();
-        rp.save(report);
-        rp.save(report2);
+        repository.save(report);
+        repository.save(report2);
 
         var result = service.getOne(1L);
 
@@ -71,11 +72,11 @@ class DefaultReadDeleteServiceTest {
     @Test
     @DisplayName("Test read service : get all of 2 records")
     void testServiceTwoReportsReortAll() {
-        final var reportTestFactory = new ReportTestFactory();
+        final var reportTestFactory = new HelperReportTestFactory();
         var report = reportTestFactory.lukeAndWanOnTatooine();
         var report2 = reportTestFactory.LeiaOnAlderaan();
-        rp.save(report);
-        rp.save(report2);
+        repository.save(report);
+        repository.save(report2);
 
         var result = service.getAll();
 
@@ -95,20 +96,41 @@ class DefaultReadDeleteServiceTest {
     }
 
     @Test
-
     @DisplayName("delete Orphans")
     void testDeleteOrphans() {
-        final var reportTestFactory = new ReportTestFactory();
+        final var reportTestFactory = new HelperReportTestFactory();
         var report = reportTestFactory.lukeAndWanOnTatooine();
         var report2 = reportTestFactory.LeiaOnAlderaan();
-        rp.save(report);
-        rp.save(report2);
-        rp.deleteById(1L);
+        repository.save(report);
+        repository.save(report2);
+        repository.deleteById(1L);
 
-        assertThat(rp.countHeroes()).isEqualTo(3L);
+        assertThat(repository.countHeroes()).isEqualTo(3L);
 
-        rp.deleteOrphans();
+        repository.deleteOrphans();
 
-        assertThat(rp.countHeroes()).isEqualTo(1L);
+        assertThat(repository.countHeroes()).isEqualTo(1L);
+    }
+    
+    @Test
+    @DisplayName("Get - record no exist")
+    void testNoRecordGet(){
+        
+        var thrown = catchThrowable(() -> service.getOne(134L));
+        
+        assertThat(thrown).as("No Record Excception")
+                .isInstanceOf(SwapiRestExceptions.RecordNotFound.class)
+                .hasMessageContaining("No record with id: ");        
+    }
+    
+    @Test
+    @DisplayName("Delete - record no exist")
+    void testNoRecordDelete(){
+        
+        var thrown = catchThrowable(() -> service.deleteOne(134L));
+        
+        assertThat(thrown).as("No Record Excception")
+                .isInstanceOf(SwapiRestExceptions.RecordNotFound.class)
+                .hasMessageContaining("No record with id: ");        
     }
 }

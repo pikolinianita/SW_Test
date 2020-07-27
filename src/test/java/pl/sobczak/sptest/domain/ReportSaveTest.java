@@ -27,7 +27,7 @@ import org.springframework.test.annotation.DirtiesContext;
 class ReportSaveTest {
 
     @Autowired
-    ReportRepository rp;
+    ReportRepository repository;
 
     Report report;
 
@@ -39,7 +39,6 @@ class ReportSaveTest {
     @AfterEach
     void TearDown(TestInfo testInfo) {
         log.info("=====Tear Down: " + testInfo.getDisplayName() + " =============== ");
-        
             }
     
     @Test
@@ -52,11 +51,11 @@ class ReportSaveTest {
         report.setRequest(new SwRequest().setHeroName("Luke").setHeroPlanet("Tatooine"))
                 .setHeroes(Set.of(luke));
 
-        report.save(rp);
+        report.save(repository);
 
-        assertThat(rp.count()).as("reports").isEqualTo(1L);
-        assertThat(rp.countHeroes()).as("heroes").isEqualTo(1L);
-        assertThat(rp.countMovies()).isEqualTo(2L);
+        assertThat(repository.count()).as("reports").isEqualTo(1L);
+        assertThat(repository.countHeroes()).as("heroes").isEqualTo(1L);
+        assertThat(repository.countMovies()).isEqualTo(2L);
         
     }
 
@@ -72,23 +71,23 @@ class ReportSaveTest {
         report.setRequest(new SwRequest().setHeroName("Luke").setHeroPlanet("Tatooine"))
                 .setHeroes(Set.of(luke));
 
-        report.save(rp);
+        report.save(repository);
 
         var report2 = new Report(2L);
         report2.setRequest(new SwRequest().setHeroName("Leia").setHeroPlanet("Alderaan"))
                 .setHeroes(Set.of(leia));
 
-        report2.save(rp);
+        report2.save(repository);
 
         var report3 = new Report(3L);
         report3.setRequest(new SwRequest().setHeroName("X").setHeroPlanet("Y"))
                 .setHeroes(Set.of(leia, luke));
 
-        report3.save(rp);
+        report3.save(repository);
         
-        assertThat(rp.count()).isEqualTo(3L);
-        assertThat(rp.countHeroes()).isEqualTo(2L);
-        assertThat(rp.countMovies()).isEqualTo(2L);
+        assertThat(repository.count()).isEqualTo(3L);
+        assertThat(repository.countHeroes()).isEqualTo(2L);
+        assertThat(repository.countMovies()).isEqualTo(2L);
     }
 
     @Test
@@ -103,16 +102,16 @@ class ReportSaveTest {
         report.setRequest(new SwRequest().setHeroName("Luke").setHeroPlanet("Tatooine"))
                 .setHeroes(Set.of(luke));
 
-        report.save(rp);
+        report.save(repository);
 
         report.setRequest(new SwRequest().setHeroName("L").setHeroPlanet("NoNe"))
                 .setHeroes(Set.of(leia));
 
-        report.save(rp);
+        report.save(repository);
         
-        assertThat(rp.count()).isEqualTo(1L);
-        assertThat(rp.countHeroes()).isEqualTo(2L);
-        assertThat(rp.countMovies()).isEqualTo(2L);
+        assertThat(repository.count()).isEqualTo(1L);
+        assertThat(repository.countHeroes()).isEqualTo(2L);
+        assertThat(repository.countMovies()).isEqualTo(2L);
     }
 
 }

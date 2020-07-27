@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import pl.sobczak.sptest.domain.ReportDTO;
-import pl.sobczak.sptest.exceptions.RestExceptions;
+import pl.sobczak.sptest.exceptions.SwapiRestExceptions;
 import pl.sobczak.sptest.domain.SwRequest;
 import pl.sobczak.sptest.service.interfac.SwapiDelete;
 import pl.sobczak.sptest.service.interfac.SwapiRead;
@@ -83,6 +83,6 @@ public class SwapiController {
     @GetMapping("/akeita")
     public Object getAkeita() {
         log.info("Akeita invoked");
-        throw new RestExceptions.AkeitaException("No Cofee Today!");
+        throw new SwapiRestExceptions.AkeitaException("No Cofee Today!");
     }
 }

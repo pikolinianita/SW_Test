@@ -26,7 +26,7 @@ import pl.sobczak.sptest.consumerhttp.HttpConsumer;
 import pl.sobczak.sptest.consumerhttp.People;
 import pl.sobczak.sptest.consumerhttp.Planet;
 import pl.sobczak.sptest.domain.repository.ReportRepository;
-import pl.sobczak.sptest.exceptions.RestExceptions;
+import pl.sobczak.sptest.exceptions.SwapiRestExceptions;
 
 /**
  *
@@ -82,14 +82,14 @@ public class Report {
             errorMsg += "There is no Hero with such name!\n";
         }
         if (!errorMsg.isEmpty()) {
-            throw new RestExceptions.HttpResourceNotFound(errorMsg);
+            throw new SwapiRestExceptions.HttpResourceNotFound(errorMsg);
         }
 
         var queryPlanet = planets.get(0);
         people.removeIf(ppl -> !ppl.getHomePlanetId().equalsIgnoreCase(queryPlanet.getSwapiId()));
 
         if (people.isEmpty()) {
-            throw new RestExceptions.HttpQueryNoHits("There is no hero with name containing " + request.getHeroName()
+            throw new SwapiRestExceptions.HttpQueryNoHits("There is no hero with name containing " + request.getHeroName()
                     + " and born on " + request.getHeroPlanet());
         }
     }

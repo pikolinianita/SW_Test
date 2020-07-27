@@ -23,7 +23,7 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.sobczak.sptest.consumerhttp.DefaultHttpConsumer;
-import pl.sobczak.sptest.exceptions.RestExceptions;
+import pl.sobczak.sptest.exceptions.SwapiRestExceptions;
 
 /**
  *
@@ -35,13 +35,13 @@ class ReportTest {
 
     Report report;
 
-    SwapiVirtualDB sw;
+    HelperSwapiVirtualDB sw;
 
     @Mock
     DefaultHttpConsumer httpConsumer;
 
     ReportTest() {
-        this.sw = new SwapiVirtualDB();
+        this.sw = new HelperSwapiVirtualDB();
     }
 
     @BeforeEach
@@ -93,7 +93,7 @@ class ReportTest {
         Throwable thrown = catchThrowable(() -> report.performQuery(request, httpConsumer));
 
         assertThat(thrown).as("No Planet No Hero")
-                .isInstanceOf(RestExceptions.HttpResourceNotFound.class)
+                .isInstanceOf(SwapiRestExceptions.HttpResourceNotFound.class)
                 .hasMessageContainingAll("no Planet with that name", "no Hero with such name");
 
     }
@@ -108,7 +108,7 @@ class ReportTest {
         Throwable thrown = catchThrowable(() -> report.performQuery(request, httpConsumer));
 
         assertThat(thrown).as("No Planet Is Hero")
-                .isInstanceOf(RestExceptions.HttpResourceNotFound.class)
+                .isInstanceOf(SwapiRestExceptions.HttpResourceNotFound.class)
                 .hasMessageContaining("no Planet with that name")
                 .hasMessageNotContaining("no Hero with such name");
 
@@ -125,7 +125,7 @@ class ReportTest {
         Throwable thrown = catchThrowable(() -> report.performQuery(request, httpConsumer));
 
         assertThat(thrown).as("Is Planet No Hero")
-                .isInstanceOf(RestExceptions.HttpResourceNotFound.class)
+                .isInstanceOf(SwapiRestExceptions.HttpResourceNotFound.class)
                 .hasMessageContaining("no Hero with such name")
                 .hasMessageNotContaining("no Planet with that name");
 
@@ -142,7 +142,7 @@ class ReportTest {
         Throwable thrown = catchThrowable(() -> report.performQuery(request, httpConsumer));
 
         assertThat(thrown).as("Planet Hero Mismatch")
-                .isInstanceOf(RestExceptions.HttpQueryNoHits.class)
+                .isInstanceOf(SwapiRestExceptions.HttpQueryNoHits.class)
                 .hasMessageContaining("There is no hero with name containing");
 
     }

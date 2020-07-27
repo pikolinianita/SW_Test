@@ -9,7 +9,7 @@ import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import pl.sobczak.sptest.exceptions.RestExceptions;
+import pl.sobczak.sptest.exceptions.SwapiRestExceptions;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 //@ControllerAdvice
 public class RestExceptionHandler {
 
-    @ExceptionHandler({RestExceptions.AkeitaException.class})
-    public ResponseEntity<String> handleNotFoundException(RestExceptions.AkeitaException e) {
+    @ExceptionHandler({SwapiRestExceptions.AkeitaException.class})
+    public ResponseEntity<String> handleNotFoundException(SwapiRestExceptions.AkeitaException e) {
         return createErrorResponse(HttpStatus.I_AM_A_TEAPOT, e);
     }
 

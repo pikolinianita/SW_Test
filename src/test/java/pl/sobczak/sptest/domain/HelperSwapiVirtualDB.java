@@ -11,11 +11,12 @@ import pl.sobczak.sptest.consumerhttp.People;
 import pl.sobczak.sptest.consumerhttp.Planet;
 
 /**
- *
+ * helper class for generating fake responses from Swapi.dev
  * @author Lukasz Sobczak
  */
-public class SwapiVirtualDB {
-    
+public class HelperSwapiVirtualDB {
+   
+    //name, Id
    public Film hope(){
         return new Film("A New Hope","1");
     }
@@ -27,15 +28,14 @@ public class SwapiVirtualDB {
    public Film roJedi(){
         return new Film("Return of Jedi", "3");
 }
-    
+    //name, Id, Set of Films Id, Planet Id
     public People luke(){
         return new People("Luke Skywalker","1", Set.of("1","2","3"), "1"); 
     }
     
     public People leia(){
         return new People("Leia Organa","2", Set.of("1","2","3"), "2");
-    }
-    
+    }    
     
     public People owen(){
         return new People("Owen Lars","3", Set.of("1"),"1");
@@ -49,6 +49,7 @@ public class SwapiVirtualDB {
         return new People("Generic Ewok","5",Set.of("3"),"3");
     }
     
+    //Name, Id    
     public Planet tatooine(){
         return new Planet("Tatooine", "1");
     }
