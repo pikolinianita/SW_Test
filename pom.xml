@@ -10,7 +10,7 @@
     </parent>
     <groupId>pl.sobczak</groupId>
     <artifactId>sptest</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>LSobczakSwapi-1.0.1</version>
     <packaging>war</packaging>
     <name>sptest</name>
     <description>test project for SP</description>
