@@ -1,5 +1,5 @@
 # SW_Test
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=pikolinianita_SW_Test)](https://sonarcloud.io/dashboard?id=pikolinianita_SW_Test)
+
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=pikolinianita_SW_Test&metric=coverage)](https://sonarcloud.io/dashboard?id=pikolinianita_SW_Test)
 
 W przesłanej wersji nie było implementacji **Equals() i HashCode()** w klasach Report, Movie, Hero. Program działał poprawnie - jest zbyt prosty żeby ich brak się ujawnił. **Przepraszam**. Program przełany do Państwa jest utworzony z wersji e39c6a78c4a6cf1d89b3726126ddfade84291ddd
