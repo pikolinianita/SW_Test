@@ -6,6 +6,7 @@
 package pl.sobczak.sptest.domain;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 import static java.util.stream.Collectors.*;
@@ -30,6 +31,8 @@ import pl.sobczak.sptest.exceptions.SwapiRestExceptions;
 
 /**
  * aggregate root
+ * Equals and hashCode generates by NetBeans
+ *
  * @author Lukasz Sobczak
  */
 @CommonsLog
@@ -43,7 +46,7 @@ public class Report {
 
     @Id
     Long reportId;
-    
+
     Long planetId;
 
     @Embedded
@@ -117,8 +120,32 @@ public class Report {
     }
 
     public Report save(ReportRepository repo) {
-      return repo.save(this);        
+        return repo.save(this);
     }
-    
-   
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.reportId);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Report other = (Report) obj;
+        if (!Objects.equals(this.reportId, other.reportId)) {
+            return false;
+        }
+        return true;
+    }
+
 }

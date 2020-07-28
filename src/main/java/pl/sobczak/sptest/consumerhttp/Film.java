@@ -12,14 +12,14 @@ import lombok.experimental.Accessors;
 
 /**
  * no filmPage class, as I always ask for films one by one
+ *
  * @author Lukasz Sobczak
  */
-
 @Accessors(chain = true)
 @Data
 @NoArgsConstructor
 public class Film {
-    
+
     @JsonProperty("title")
     private String name;
 
@@ -36,5 +36,5 @@ public class Film {
         this.name = name;
         this.swapiId = swapiId;
     }
-   
+
 }
