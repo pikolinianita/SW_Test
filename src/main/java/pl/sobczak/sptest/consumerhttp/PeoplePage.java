@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 /**
  * gets data (from Jackson) from one page (up to 10 hits)
+ *
  * @author Lukasz Sobczak
  */
 public class PeoplePage {
@@ -61,9 +62,9 @@ public class PeoplePage {
     List<People> getResultList() {
         return resultList;
     }
- 
+
     String getNext() {
         return next;
     }
-    
+
 }

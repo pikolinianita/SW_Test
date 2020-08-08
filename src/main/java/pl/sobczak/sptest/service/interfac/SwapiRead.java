@@ -15,7 +15,7 @@ import pl.sobczak.sptest.domain.ReportDTO;
 public interface SwapiRead {
 
     ReportDTO getOne(Long id);
-    
+
     List<ReportDTO> getAll();
 
 }

@@ -14,11 +14,11 @@ import java.util.Set;
  * @author Lukasz Sobczak
  */
 public interface HttpConsumer {
-    
+
     public List<Planet> findPlanet(String name);
-    
+
     public List<People> findPeople(String name);
-    
-    public Set<Film> findFilms (Collection<String> listOfIds);
-    
+
+    public Set<Film> findFilms(Collection<String> listOfIds);
+
 }

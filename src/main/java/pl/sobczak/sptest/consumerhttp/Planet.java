@@ -15,7 +15,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Planet {
-        
+
     private final String name;
 
     private final String swapiId;

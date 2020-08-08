@@ -8,7 +8,7 @@ package pl.sobczak.sptest.domain;
 import lombok.Getter;
 
 /**
- *  
+ *
  * @author Lukasz Sobczak
  */
 @Getter

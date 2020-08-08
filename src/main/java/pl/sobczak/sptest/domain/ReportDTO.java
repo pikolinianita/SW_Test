@@ -8,27 +8,27 @@ import lombok.experimental.Accessors;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template file, choose Tools | Templates and open the template
+ * in the editor.
  */
-
 /**
- *  names are not in Java convention, because they are converted to JSON
+ * names are not in Java convention, because they are converted to JSON
+ *
  * @author Lukasz Sobczak
  */
-@Accessors(chain=true)
+@Accessors(chain = true)
 @Setter
 @Getter
 @ToString
 public class ReportDTO {
-    
-Long report_id;
- 
-String query_criteria_character_phrase;
 
-String query_criteria_planet_name;
+    Long report_id;
 
-List<ReportLineDTO> result;
+    String query_criteria_character_phrase;
+
+    String query_criteria_planet_name;
+
+    List<ReportLineDTO> result;
 
     public ReportDTO(Long report_id, String heroName, String planet) {
         this.report_id = report_id;

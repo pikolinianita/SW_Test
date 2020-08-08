@@ -29,8 +29,8 @@ public enum SwapiUrls {
         return urlAddress;
     }
 
-    public String findById(String id){
+    public String findById(String id) {
         return urlAddress + id + '/';
     }
-    
+
 }

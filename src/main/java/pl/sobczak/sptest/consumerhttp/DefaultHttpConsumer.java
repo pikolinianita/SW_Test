@@ -18,7 +18,6 @@ import static pl.sobczak.sptest.consumerhttp.SwapiUrls.*;
  *
  * @author Lukasz Sobczak
  */
-
 @Component
 public class DefaultHttpConsumer implements HttpConsumer {
 
@@ -33,10 +32,10 @@ public class DefaultHttpConsumer implements HttpConsumer {
         var resultList = new LinkedList<Planet>();
         var nextUrl = PLANET.queryWithNameUri(name);
 
-        while (nextUrl != null) {            
+        while (nextUrl != null) {
             var page = restTemplate.getForObject(nextUrl, PlanetPage.class);
             nextUrl = page.getNext();
-            resultList.addAll(page.getResultList());           
+            resultList.addAll(page.getResultList());
         }
         return resultList;
     }
@@ -46,11 +45,11 @@ public class DefaultHttpConsumer implements HttpConsumer {
         var resultList = new LinkedList<People>();
         var nextUrl = PEOPLE.queryWithNameUri(name);
 
-        while (nextUrl != null) {            
+        while (nextUrl != null) {
             var page = restTemplate.getForObject(nextUrl, PeoplePage.class);
             nextUrl = page.getNext();
-            resultList.addAll(page.getResultList());           
-        }        
+            resultList.addAll(page.getResultList());
+        }
         return resultList;
     }
 

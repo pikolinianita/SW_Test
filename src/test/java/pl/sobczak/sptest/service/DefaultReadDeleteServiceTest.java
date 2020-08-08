@@ -20,7 +20,7 @@ import pl.sobczak.sptest.domain.repository.ReportRepository;
 import pl.sobczak.sptest.exceptions.SwapiRestExceptions;
 
 /**
- * 
+ *
  * @author Lukasz Sobczak
  */
 @CommonsLog
@@ -111,26 +111,26 @@ class DefaultReadDeleteServiceTest {
 
         assertThat(repository.countHeroes()).isEqualTo(1L);
     }
-    
+
     @Test
     @DisplayName("Get - record no exist")
-    void testNoRecordGet(){
-        
+    void testNoRecordGet() {
+
         var thrown = catchThrowable(() -> service.getOne(134L));
-        
+
         assertThat(thrown).as("No Record Excception")
                 .isInstanceOf(SwapiRestExceptions.RecordNotFound.class)
-                .hasMessageContaining("No record with id: ");        
+                .hasMessageContaining("No record with id: ");
     }
-    
+
     @Test
     @DisplayName("Delete - record no exist")
-    void testNoRecordDelete(){
-        
+    void testNoRecordDelete() {
+
         var thrown = catchThrowable(() -> service.deleteOne(134L));
-        
+
         assertThat(thrown).as("No Record Excception")
                 .isInstanceOf(SwapiRestExceptions.RecordNotFound.class)
-                .hasMessageContaining("No record with id: ");        
+                .hasMessageContaining("No record with id: ");
     }
 }
