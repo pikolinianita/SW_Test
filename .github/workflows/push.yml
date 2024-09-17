@@ -31,3 +31,5 @@ jobs:
       run: mvn verify sonar:sonar
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
